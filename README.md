@@ -35,5 +35,6 @@ Trello Board - [Link](https://trello.com/invite/b/68cabc69a8381973073a0192/ATTI5
 
    User Account Authenticate/Login
    ![Login Activity Diagram](imgs/authLoginDiagram.drawio.png)
+   ![Login Communication Diagram](<imgs/User account authentication_login Communication Diagram.drawio.png>)
    * Scenarios
    * Diagram(s)
