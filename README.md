@@ -2,7 +2,7 @@
 Auction app for UDayton Capstone 490 - Wyatt Bier, Erich Jaster, Thomas McGinley\
 Trello Board - [Link](https://trello.com/invite/b/68cabc69a8381973073a0192/ATTI525aeaf989044b218676779a4d1f59b29800A9B2/cps-490-auction)
 
-1. Introduction
+# 1. Introduction
    * Purpose
       * Summarize the project, including a short description of the purpose of the system being built.
    * Scope
@@ -13,7 +13,7 @@ Trello Board - [Link](https://trello.com/invite/b/68cabc69a8381973073a0192/ATTI5
       * Any documents referred to in the creation of this systems analysis.
    * Overview
       * A short description of the rest of the document, detailing what each section covers and where information may be found.
-2. Overall Description
+# 2. Overall Description
    * Product Perspective
       * An overview of the environment that this system must operate within, including other software and hardware systems that will interface with this system.
    * Product Functions
@@ -26,15 +26,20 @@ Trello Board - [Link](https://trello.com/invite/b/68cabc69a8381973073a0192/ATTI5
           themselves, requirements)
    * Assumptions
       * Any assumptions that are being made in specifying these requirements.
-3. Systems Analysis
+# 3. Systems Analysis
    * Context level data flow diagram
    * Context level entity relationship diagram
 
 
-4. Use Cases
+# 4. Use Cases and their
 
-   User Account Authenticate/Login
+   ## Use case 1: User Account Authenticate/Login
    ![Login Activity Diagram](imgs/authLoginDiagram.drawio.png)
    ![Login Communication Diagram](<imgs/User account authentication_login Communication Diagram.drawio.png>)
-   * Scenarios
-   * Diagram(s)
+
+   ## Use Case 5: User sees Auction Page and its details
+   communciation Diagram:
+      ![Auction Page Communication Diagram](imgs/AuctionPageComm.drawio.png)
+
+   Activity Diagram:
+      ![AUction Page Activity Diagram](imgs/AuctionPageActivity.drawio.png)
