@@ -139,10 +139,10 @@ Use case Description
 
 ---
 ### Activity Diagram:
-![Auction Button Activity Diagram](imgs/ClickAuctionActivityDiagram.png)
+![Auction Button Activity Diagram](imgs/ClickAuctionActivityDiagram.drawio.png)
 ---
 ### Communication Diagram:
-![Auction Button Communication Diagram](imgs/ClickAuctionCommunicationDiagram.png)
+![Auction Button Communication Diagram](imgs/ClickAuctionCommunicationDiagram.drawio.png)
 
 ## Use case 5: User sees auction page and its details
 Communciation Diagram:
