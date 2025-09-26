@@ -1,5 +1,5 @@
 # CPS490-Auction
-Auction app for UDayton Capstone 490 - Wyatt Bier, Erich Jaster, Thomas McGinley\
+Auction app for UDayton Capstone 490 - Wyatt Bier, Erich Jaster, Thomas McGinley
 Trello Board - [Link](https://trello.com/invite/b/68cabc69a8381973073a0192/ATTI525aeaf989044b218676779a4d1f59b29800A9B2/cps-490-auction)
 
 # 1. Introduction
@@ -31,15 +31,68 @@ Trello Board - [Link](https://trello.com/invite/b/68cabc69a8381973073a0192/ATTI5
    * Context level entity relationship diagram
 
 
-# 4. Use Cases and their
+# 4. Use Cases
+## Use case 1: User Account Authenticate/Login
+![Login Activity Diagram](imgs/authLoginDiagram.drawio.png)
+---
+![Login Communication Diagram](<imgs/User account authentication_login Communication Diagram.drawio.png>)
 
-   ## Use case 1: User Account Authenticate/Login
-   ![Login Activity Diagram](imgs/authLoginDiagram.drawio.png)
-   ![Login Communication Diagram](<imgs/User account authentication_login Communication Diagram.drawio.png>)
+## Use case 2: Users can add an auction item
+Description: This use case describes the process by which a user adds a new item to the auction page
 
-   ## Use Case 5: User sees Auction Page and its details
-   communciation Diagram:
-      ![Auction Page Communication Diagram](imgs/AuctionPageComm.drawio.png)
+Actors:
+- User (primary actor)
 
-   Activity Diagram:
-      ![AUction Page Activity Diagram](imgs/AuctionPageActivity.drawio.png)
+Preconditions:
+- The user has an account and is logged into the application.
+- The system is online and accessible.
+
+Postconditions:
+- Auction item created: An auction item is added with a description, title, and end time.
+
+Basic flow (main success scenario):
+1. The user clicks a button to take them to the auction item creation page.
+2. The system checks that the user is logged in.
+3. The system displays a form for the user to fill in:
+   - Title, description, and end date are required fields.
+   - Starting bid is an optional field.
+4. The system prompts the user to upload an image of the auction item.
+5. The user selects the publish button.
+6. The system validates that the form is completed with the required fields.
+7. The user is taken to the newly created auction page.
+
+Alternative flows:
+- Incomplete form:
+   1. Steps 1-5 of basic flow.
+   2. The system finds the form to be incomplete.
+   3. An error message displays, telling the user which fields are still required.
+   4. The required fields that were incomplete are highlighted.
+   5. The user can fill in the required fields or return to the main screen.
+- End time in the past:
+   1. Steps 1-5 of basic flow.
+   2. The system finds the end time to be a time in the past.
+   3. An error message displays, telling the user that the end time is in the past.
+   4. The end time field is highlighted.
+   5. The user can retry the form or return to the main screen.
+- User not logged in:
+   1. Steps 1-2 of basic flow.
+   2. The system finds that the user is not logged in.
+   3. The system redirects the user to login page.
+
+Exceptions:
+- System Unavailable: If the system is offline or encountering errors during the login attempt, a "System Unavailable" message is displayed.
+---
+Activity Diagram:
+
+![New Auction Activity Diagram](imgs/NewAuctionActivityDiagram.png)
+---
+Communication Diagram:
+
+![New Auction Communication Diagram](imgs/NewAuctionCommunication.png)
+
+## Use case 5: User sees auction page and its details
+Communciation Diagram:
+![Auction Page Communication Diagram](imgs/AuctionPageComm.drawio.png)
+---
+Activity Diagram:
+![Auction Page Activity Diagram](imgs/AuctionPageActivity.drawio.png)
