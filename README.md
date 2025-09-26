@@ -134,6 +134,16 @@ Communication Diagram:
 
 ![New Auction Communication Diagram](imgs/NewAuctionCommunication.png)
 
+## Use case 4: User can click on active auctions
+Use case Description
+
+---
+### Activity Diagram:
+![Auction Button Activity Diagram](imgs/ClickAuctionActivityDiagram.png)
+---
+### Communication Diagram:
+![Auction Button Communication Diagram](imgs/ClickAuctionCommunicationDiagram.png)
+
 ## Use case 5: User sees auction page and its details
 Communciation Diagram:
 ![Auction Page Communication Diagram](imgs/AuctionPageComm.drawio.png)
