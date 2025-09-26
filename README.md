@@ -33,8 +33,52 @@ Trello Board - [Link](https://trello.com/invite/b/68cabc69a8381973073a0192/ATTI5
 
 # 4. Use Cases
 ## Use case 1: User Account Authenticate/Login
+Description: This use case describes the process by which a user adds a new item to the auction page
+
+Actors:
+- User (primary actor)
+
+Preconditions:
+- The user has an account.
+- The system is online and accessible.
+
+Postconditions:
+- User has an account.
+- User is logged into their account.
+
+Basic flow (main success scenario):
+1. The user clicks a button to take them to the login page.
+2. The user selects to either login to an existing account or create a new one.
+3. The user fills in the form with a username and password.
+4. The system verifies that the username is available or the username and password match the database
+5. The user is logged in and returned to the all auctions page
+
+Alternative flows:
+- Incomplete form:
+   1. Steps 1-5 of basic flow.
+   2. The system finds the form to be incomplete.
+   3. An error message displays, telling the user which fields are still required.
+   4. The required fields that were incomplete are highlighted.
+   5. The user can fill in the required fields or return to the main screen.
+- Username is taken:
+   1. Steps 1-4 of basic flow.
+   2. The system finds that the username is not unique
+   3. The system displays an error message, telling the user that the username is not unique
+   4. The user can enter a new username or return to main screen.
+- Username and password do not match the database
+   1. Steps 1-4 of basic flow.
+   2. The system finds that the username exists in the database and the password does not match
+   3. The system displays an error message, telling the user that the password is incorrect
+   4. The user can enter a new password or return to the main screen.
+
+Exceptions:
+- System Unavailable: If the system is offline or encountering errors during the login attempt, a "System Unavailable" message is displayed.
+
+---
+### Activity Diagram:
 ![Login Activity Diagram](imgs/authLoginDiagram.drawio.png)
 ---
+### Communication Diagram:
 ![Login Communication Diagram](<imgs/User account authentication_login Communication Diagram.drawio.png>)
 
 ## Use case 2: Users can add an auction item
