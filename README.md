@@ -126,11 +126,11 @@ Alternative flows:
 Exceptions:
 - System Unavailable: If the system is offline or encountering errors during the login attempt, a "System Unavailable" message is displayed.
 ---
-Activity Diagram:
+### Activity Diagram:
 
 ![New Auction Activity Diagram](imgs/NewAuctionActivityDiagram.png)
 ---
-Communication Diagram:
+### Communication Diagram:
 
 ![New Auction Communication Diagram](imgs/NewAuctionCommunication.png)
 
@@ -145,8 +145,47 @@ Use case Description
 ![Auction Button Communication Diagram](imgs/ClickAuctionCommunicationDiagram.drawio.png)
 
 ## Use case 5: User sees auction page and its details
-Communciation Diagram:
+Description: This use case describes the process by which a user clicks onto a specific auction and views its details
+
+Actors:
+- User (primary actor)
+
+Preconditions:
+- The system is online and accessible.
+
+Postconditions:
+- User sees the auction they chose to look at.
+- User may create a bid on the auction if they choose to.
+
+Basic flow (main success scenario):
+1. The user clicks a button to take them to the auction page they selected.
+2. The system displays auction details:
+   - Title, description, current highest bid, bidding countdown
+3. The system will continue to update the current bid and the countdown as long as the user is still viewing it and the auction is not closed.
+4. User submits bid.
+5. System checks and confirms that the bid is valid.
+6. System records the bid and updates bidding history.
+
+Alternative flows:
+- Auction closed:
+   1. Steps 1-3 of basic flow.
+   2. The system finds the auction to be closed.
+   3. The system will close bidding access to that auction and stop updating the acution details.
+- User chooses not to bid:
+   1. Steps 1-3 of basic flow.
+   2. User chooses not to bid.
+   3. System continues to update the auction details; leaving the option to bid open to the user as long as the auction is open.
+- User's bid not valid:
+   1. Steps 1-4 of basic flow.
+   2. The system finds that the user's bid is not valid.
+   3. The system shows error/warning about the bid not being valid.
+   4. The system prompts user to retry bid again if they wish to.
+
+Exceptions:
+- System Unavailable: If the system is offline or encountering errors during the login attempt, a "System Unavailable" message is displayed.
+---
+### Communciation Diagram:
 ![Auction Page Communication Diagram](imgs/AuctionPageComm.drawio.png)
 ---
-Activity Diagram:
+### Activity Diagram:
 ![Auction Page Activity Diagram](imgs/AuctionPageActivity.drawio.png)
