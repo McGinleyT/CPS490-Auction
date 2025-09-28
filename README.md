@@ -135,7 +135,30 @@ Exceptions:
 ![New Auction Communication Diagram](imgs/NewAuctionCommunication.png)
 
 ## Use case 3: User can see all active auctions
-Description
+Description: This use case describes the process by which a user is able to view all active auctions.
+
+Actors:
+- User (Primary Actor)
+
+Preconditions:
+- The system is online and accessible.
+
+Postconditions:
+- The user can see all active auctions on a single page.
+
+Basic Flow (Main Success Scenario):
+1. The user access the site.
+2. The user is able to see all active auctions on the main page.
+3. The user clicks on an auction to view more details or place a bid.
+
+Alternative Flows:
+- Auctions filtering:
+   1. Steps 1-2 of basic flow.
+   2. The user chooses to filter auctions
+   3. The user is shown a reduced list of active auctions.
+
+Exceptions:
+- System Unavailable: If the system is offline, a "System Unavailable" message is displayed.
 ---
 ### Activity Diagram:
 ![Active Auctions Activity Diagram](<imgs/Active Auctions Activity Diagram.png>)
@@ -176,7 +199,7 @@ Alternative Flows:
     4. The system loads the auction page.
 
 Exceptions:
-- System Unavailable: If the system is offline or encountering errors during the login attempt, a "System Unavailable" message is displayed.
+- System Unavailable: If the system is offline, a "System Unavailable" message is displayed.
 ---
 ### Activity Diagram:
 ![Auction Button Activity Diagram](imgs/ClickAuctionActivityDiagram.drawio.png)
@@ -222,7 +245,7 @@ Alternative flows:
    4. The system prompts user to retry bid again if they wish to.
 
 Exceptions:
-- System Unavailable: If the system is offline or encountering errors during the login attempt, a "System Unavailable" message is displayed.
+- System Unavailable: If the system is offline, a "System Unavailable" message is displayed.
 ---
 ### Communciation Diagram:
 ![Auction Page Communication Diagram](imgs/AuctionPageComm.drawio.png)
