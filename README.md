@@ -134,6 +134,15 @@ Exceptions:
 
 ![New Auction Communication Diagram](imgs/NewAuctionCommunication.png)
 
+## Use case 3: User can see all active auctions
+Description
+---
+### Activity Diagram:
+![Active Auctions Activity Diagram](<imgs/Active Auctions Activity Diagram.png>)
+---
+### Communication Diagram:
+![Active Auctions Communication Diagram](imgs/)
+
 ## Use case 4: User can click on active auctions
 Description: This use case describes the process by which a user clicks on an auction to access that specific auction’s information.
 
@@ -168,8 +177,6 @@ Alternative Flows:
 
 Exceptions:
 - System Unavailable: If the system is offline or encountering errors during the login attempt, a "System Unavailable" message is displayed.
-
-
 ---
 ### Activity Diagram:
 ![Auction Button Activity Diagram](imgs/ClickAuctionActivityDiagram.drawio.png)
