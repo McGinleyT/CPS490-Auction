@@ -40,12 +40,8 @@ Trello Board - [Link](https://trello.com/invite/b/68cabc69a8381973073a0192/ATTI5
       * Users may be individuals seeking to place bids on ongoing auctions.
       * Users may be seeking to place items up for auction.
       * Users may not be looking for a particular auction, but may find one that they are interested in after acessing the application.
-# 3. Systems Analysis
-   * Context level data flow diagram
-   * Context level entity relationship diagram
 
-
-# 4. Use Cases
+# 3. Use Cases
 ## Use case 1: User Account Authenticate/Login
 Description: This use case describes the process by which a user adds a new item to the auction page
 
