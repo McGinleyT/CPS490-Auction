@@ -164,7 +164,7 @@ Exceptions:
 ![Active Auctions Activity Diagram](<imgs/Active Auctions Activity Diagram.png>)
 ---
 ### Communication Diagram:
-![Active Auctions Communication Diagram](imgs/)
+![Active Auctions Communication Diagram](imgs/UseCase3CommDiagram.drawio.png)
 
 ## Use case 4: User can click on active auctions
 Description: This use case describes the process by which a user clicks on an auction to access that specific auction’s information.
