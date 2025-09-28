@@ -4,15 +4,25 @@ Trello Board - [Link](https://trello.com/invite/b/68cabc69a8381973073a0192/ATTI5
 
 # 1. Introduction
    * Purpose
-      * Summarize the project, including a short description of the purpose of the system being built.
+      * This document defines the initial ideas for a basic auction web application. The system's purpose is to let authenticated users to list items for auction, browse all active auctions, open an auction to see its details with a real-time countdown, and bid using tokens with a live bid history.
    * Scope
-      * A clear description of what portions of this project that this document is intended to cover.
+      * User-level functionality captured as use cases and use case descriptions for each required feature.
+      * One communication diagram per use case.
+      * activity diagrams capturing behavior across or within use cases.
    * Definitions & Acronyms
-      * Define any terms used in the document that may not be obvious to the reader.
+      * Active Action - An auction that has started and has not yet reached its end time.
+      * Token - The in-app bidding currency used to place bids.
+      * Bid History – Chronological record of accepted bids for a given auction, shown to users in near real time.
+      * Real-time – Server-to-client updates during an auction.
+      * UI – User Interface (the web page/screens users interact with).
+      * Use Case – A description of system behavior from a user’s perspective to achieve a goal.
+      * Communication Diagram – UML interaction diagrams showing objects and message order.
+      * Activity Diagram – UML diagram that models control flow and decision logic.
    * References
       * Any documents referred to in the creation of this systems analysis.
    * Overview
-      * A short description of the rest of the document, detailing what each section covers and where information may be found.
+      * Section 2 - Overall description: goes into more details about this idea as a product.
+      * 
 # 2. Overall Description
    * Product Perspective
       * An overview of the environment that this system must operate within, including other software and hardware systems that will interface with this system.
