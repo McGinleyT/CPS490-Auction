@@ -25,17 +25,21 @@ Trello Board - [Link](https://trello.com/invite/b/68cabc69a8381973073a0192/ATTI5
       * 
 # 2. Overall Description
    * Product Perspective
-      * An overview of the environment that this system must operate within, including other software and hardware systems that will interface with this system.
+      * The system is using the MERN stack architecture for creating and running the application:
+         - MongoDB is used to handle database functions.
+         - Express.js is used to build the web application and associated APIs.
+         - React is used to develop the user interface.
+         - Node.js is the runtime environment that the application will run in.
    * Product Functions
-      * An overview of the features to be provided by the software.
+      * Users can create an account allowing them to:
+         - Place items up for auction.
+         - Make bids on existing auctions.
+      * Users can view all active auctions and choose filters to find relevant auctions.
+      * Users can click on an auction to see details and place a bid.
    * User Characteristics
-      * Description of the types of users that will interact with this software and
-          assumed properties of those users.
-   * Constraints
-      * Any constraints that have been placed on the project (that are not, in
-          themselves, requirements)
-   * Assumptions
-      * Any assumptions that are being made in specifying these requirements.
+      * Users may be individuals seeking to place bids on ongoing auctions.
+      * Users may be seeking to place items up for auction.
+      * Users may not be looking for a particular auction, but may find one that they are interested in after acessing the application.
 # 3. Systems Analysis
    * Context level data flow diagram
    * Context level entity relationship diagram
