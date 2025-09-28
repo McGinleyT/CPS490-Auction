@@ -1,16 +1,16 @@
 # CPS490-Auction
-Auction app for UDayton Capstone 490 - Wyatt Bier, Erich Jaster, Thomas McGinley
+Auction app for UD Capstone 490 - Wyatt Bier, Erich Jaster, Thomas McGinley
 Trello Board - [Link](https://trello.com/invite/b/68cabc69a8381973073a0192/ATTI525aeaf989044b218676779a4d1f59b29800A9B2/cps-490-auction)
 
 # 1. Introduction
    * Purpose
-      * This document defines the initial ideas for a basic auction web application. The system's purpose is to let authenticated users to list items for auction, browse all active auctions, open an auction to see its details with a real-time countdown, and bid using tokens with a live bid history.
+      * This document defines the initial ideas for a basic auction web application. The system's purpose is to let authenticated users list items for auction, browse all active auctions, open an auction to see its details with a real-time countdown, and bid using tokens with a live bid history.
    * Scope
       * User-level functionality captured as use cases and use case descriptions for each required feature.
       * One communication diagram per use case.
-      * activity diagrams capturing behavior across or within use cases.
+      * Activity diagrams capturing behavior across or within use cases.
    * Definitions & Acronyms
-      * Active Action - An auction that has started and has not yet reached its end time.
+      * Active Auction - An auction that has started and has not yet reached its end time.
       * Token - The in-app bidding currency used to place bids.
       * Bid History – Chronological record of accepted bids for a given auction, shown to users in near real time.
       * Real-time – Server-to-client updates during an auction.
@@ -18,11 +18,7 @@ Trello Board - [Link](https://trello.com/invite/b/68cabc69a8381973073a0192/ATTI5
       * Use Case – A description of system behavior from a user’s perspective to achieve a goal.
       * Communication Diagram – UML interaction diagrams showing objects and message order.
       * Activity Diagram – UML diagram that models control flow and decision logic.
-   * References
-      * Any documents referred to in the creation of this systems analysis.
-   * Overview
-      * Section 2 - Overall description: goes into more details about this idea as a product.
-      * 
+      
 # 2. Overall Description
    * Product Perspective
       * The system is using the MERN stack architecture for creating and running the application:
@@ -39,11 +35,11 @@ Trello Board - [Link](https://trello.com/invite/b/68cabc69a8381973073a0192/ATTI5
    * User Characteristics
       * Users may be individuals seeking to place bids on ongoing auctions.
       * Users may be seeking to place items up for auction.
-      * Users may not be looking for a particular auction, but may find one that they are interested in after acessing the application.
+      * Users may not be looking for a particular auction, but may find one that they are interested in after accessing the application.
 
 # 3. Use Cases
 ## Use case 1: User Account Authenticate/Login
-Description: This use case describes the process by which a user adds a new item to the auction page
+Description: This use case describes the process by which a user authenticates (logs in or creates an account).
 
 Actors:
 - User (primary actor)
@@ -60,8 +56,8 @@ Basic flow (main success scenario):
 1. The user clicks a button to take them to the login page.
 2. The user selects to either login to an existing account or create a new one.
 3. The user fills in the form with a username and password.
-4. The system verifies that the username is available or the username and password match the database
-5. The user is logged in and returned to the all auctions page
+4. The system verifies that the username is available or the username and password match the database.
+5. The user is logged in and returned to the active auctions page.
 
 Alternative flows:
 - Incomplete form:
@@ -72,13 +68,13 @@ Alternative flows:
    5. The user can fill in the required fields or return to the main screen.
 - Username is taken:
    1. Steps 1-4 of basic flow.
-   2. The system finds that the username is not unique
-   3. The system displays an error message, telling the user that the username is not unique
-   4. The user can enter a new username or return to main screen.
-- Username and password do not match the database
+   2. The system finds that the username is not unique.
+   3. The system displays an error message, telling the user that the username is not unique.
+   4. The user can enter a new username or return to the main screen.
+- Username and password do not match the database:
    1. Steps 1-4 of basic flow.
-   2. The system finds that the username exists in the database and the password does not match
-   3. The system displays an error message, telling the user that the password is incorrect
+   2. The system finds that the username exists in the database and the password does not match.
+   3. The system displays an error message, telling the user that the password is incorrect.
    4. The user can enter a new password or return to the main screen.
 
 Exceptions:
@@ -92,7 +88,7 @@ Exceptions:
 ![Login Communication Diagram](<imgs/User account authentication_login Communication Diagram.drawio.png>)
 
 ## Use case 2: Users can add an auction item
-Description: This use case describes the process by which a user adds a new item to the auction page
+Description: This use case describes the process by which a user adds a new item to the auction page.
 
 Actors:
 - User (primary actor)
@@ -131,7 +127,7 @@ Alternative flows:
 - User not logged in:
    1. Steps 1-2 of basic flow.
    2. The system finds that the user is not logged in.
-   3. The system redirects the user to login page.
+   3. The system redirects the user to the login page.
 
 Exceptions:
 - System Unavailable: If the system is offline or encountering errors during the login attempt, a "System Unavailable" message is displayed.
@@ -157,14 +153,14 @@ Postconditions:
 - The user can see all active auctions on a single page.
 
 Basic Flow (Main Success Scenario):
-1. The user access the site.
-2. The user is able to see all active auctions on the main page.
+1. The user accesses the site.
+2. The system displays all active auctions on the main page.
 3. The user clicks on an auction to view more details or place a bid.
 
 Alternative Flows:
 - Auctions filtering:
    1. Steps 1-2 of basic flow.
-   2. The user chooses to filter auctions
+   2. The user chooses to filter auctions.
    3. The user is shown a reduced list of active auctions.
 
 Exceptions:
@@ -186,7 +182,7 @@ Preconditions:
 - The system is online and accessible.
 
 Postconditions:
-- The user can see all active auctions.
+- The user sees the selected auction’s page.
 
 Basic Flow (Main Success Scenario):
 1. The user sees all active auctions.
@@ -198,7 +194,7 @@ Basic Flow (Main Success Scenario):
 Alternative Flows:
 - Auction Not Active:
     1. Steps 1-3 of Basic Flow.
-    2. The system that returns the auction is not active.
+    2. The system returns the auction is not active.
     3. The system displays an "Auction Ended" message with an "acknowledge" and "return to auctions" buttons.
     4. The user presses the "return to auctions" button.
     5. The system loads the active auctions page.
@@ -218,7 +214,7 @@ Exceptions:
 ![Auction Button Communication Diagram](imgs/ClickAuctionCommunicationDiagram.drawio.png)
 
 ## Use case 5: User sees auction page and its details
-Description: This use case describes the process by which a user clicks onto a specific auction and views its details
+Description: This use case describes the process by which a user clicks on a specific auction and views its details.
 
 Actors:
 - User (primary actor)
@@ -233,17 +229,17 @@ Postconditions:
 Basic flow (main success scenario):
 1. The user clicks a button to take them to the auction page they selected.
 2. The system displays auction details:
-   - Title, description, current highest bid, bidding countdown
-3. The system will continue to update the current bid and the countdown as long as the user is still viewing it and the auction is not closed.
-4. User submits bid.
-5. System checks and confirms that the bid is valid.
-6. System records the bid and updates bidding history.
+   - Title, description, current highest bid, bidding countdown.
+3. The system continues to update the current bid and the countdown as long as the user is still viewing it and the auction is not closed.
+4. The user submits bid.
+5. The system checks and confirms that the bid is valid.
+6. The system records the bid and updates bidding history.
 
 Alternative flows:
 - Auction closed:
    1. Steps 1-3 of basic flow.
    2. The system finds the auction to be closed.
-   3. The system will close bidding access to that auction and stop updating the acution details.
+   3. The system will close bidding access to that auction and stop updating the auction details.
 - User chooses not to bid:
    1. Steps 1-3 of basic flow.
    2. User chooses not to bid.
