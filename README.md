@@ -135,7 +135,40 @@ Exceptions:
 ![New Auction Communication Diagram](imgs/NewAuctionCommunication.png)
 
 ## Use case 4: User can click on active auctions
-Use case Description
+Description: This use case describes the process by which a user clicks on an auction to access that specific auction’s information.
+
+Actors:
+- User (Primary Actor)
+
+Preconditions:
+- The system is online and accessible.
+
+Postconditions:
+- The user can see all active auctions.
+
+Basic Flow (Main Success Scenario):
+1. The user sees all active auctions.
+2. The user chooses an auction to click on.
+3. The system checks whether the auction is active.
+4. The system returns that the auction is active.
+5. The system loads the auction page.
+
+Alternative Flows:
+- Auction Not Active:
+    1. Steps 1-3 of Basic Flow.
+    2. The system that returns the auction is not active.
+    3. The system displays an "Auction Ended" message with an "acknowledge" and "return to auctions" buttons.
+    4. The user presses the "return to auctions" button.
+    5. The system loads the active auctions page.
+- Auction Ended Acknowledgement:
+    1. Steps 1-3 of Basic Flow.
+    2. Steps 1-3 of Auction Not Active Alternative Flow.
+    3. The user presses the "acknowledgement" button.
+    4. The system loads the auction page.
+
+Exceptions:
+- System Unavailable: If the system is offline or encountering errors during the login attempt, a "System Unavailable" message is displayed.
+
 
 ---
 ### Activity Diagram:
