@@ -25,3 +25,17 @@ export const getUserInfo = async (id) => {
   })
   return await res.json()
 }
+
+export const deleteMe = async (token) => {
+  const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}user/me`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}))
+    throw new Error(data.error || 'failed to delete account')
+  }
+  return await res.json()
+}
