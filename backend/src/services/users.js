@@ -31,3 +31,7 @@ export async function getUserInfoById(userId) {
     return { username: userId }
   }
 }
+export async function deleteUserById(userId) {
+  const deleted = await User.findByIdAndDelete(userId)
+  return deleted
+}
