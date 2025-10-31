@@ -39,8 +39,14 @@ export function Header() {
   }
 
   return (
-    <div>
-      <Link to='/login'>Login</Link> | <Link to='/signup'>Sign Up</Link>
+    <div className='bg-purple-600 text-white px-6 py-3 rounded-b-2xl'>
+      <Link className='font-bold underline' to='/login'>
+        Login
+      </Link>
+      <span className='mx-2 text-purple-200'>|</span>
+      <Link className='hover:text-yellow-200' to='/signup'>
+        Sign Up
+      </Link>
     </div>
   )
 }
