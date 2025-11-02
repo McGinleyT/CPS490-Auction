@@ -19,11 +19,13 @@ export function CreatePost() {
     createPostMutation.mutate()
   }
 
-  if (!token) return <div>Please log in to create new posts.</div>
+  if (!token) return <strong>Please log in to create new posts.</strong>
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='CreatePost'>
       <div>
+        <strong>Create a New Auction Posting</strong>
+        <br />
         <label htmlFor='create-title'>Title: </label>
         <input
           type='text'
@@ -34,7 +36,9 @@ export function CreatePost() {
         />
       </div>
       <br />
+      <label htmlFor='contents'>Description: </label>
       <textarea
+        name='contents'
         value={contents}
         onChange={(e) => setContents(e.target.value)}
       />

@@ -3,6 +3,7 @@ import { jwtDecode } from 'jwt-decode'
 import { useAuth } from '../contexts/AuthContext.jsx'
 import { User } from './User.jsx'
 import { deleteMe } from '../api/users.js'
+import logo from '../assets/redmower.png'
 
 export function Header() {
   const [token, setToken] = useAuth()
@@ -24,14 +25,26 @@ export function Header() {
   if (token) {
     const { sub } = jwtDecode(token)
     return (
-      <div>
-        Logged in as <User id={sub} />
-        <br />
-        <button onClick={() => setToken(null)}>Logut</button>
-        <button
-          onClick={handleDeleteAccount}
-          style={{ marginLeft: 8, color: 'red' }}
+      <div className='nav-authenticated'>
+        <img src={logo} alt='logo' className='logo' />
+        <div
+          style={{
+            fontFamily: 'Copperplate',
+            'font-weight': 'bold',
+            color: 'silver',
+          }}
         >
+          Lawn Pawn
+        </div>
+        <div>
+          Logged in as:&nbsp;
+          <User id={sub} />
+        </div>
+
+        <button onClick={() => setToken(null)} className='logout-button'>
+          Logout
+        </button>
+        <button onClick={handleDeleteAccount} className='delete-button'>
           Delete Account
         </button>
       </div>
@@ -40,6 +53,16 @@ export function Header() {
 
   return (
     <div className='nav'>
+      <img src={logo} alt='logo' className='logo' />
+      <div
+        style={{
+          fontFamily: 'Copperplate',
+          'font-weight': 'bold',
+          color: 'silver',
+        }}
+      >
+        Lawn Pawn
+      </div>
       <Link to='/'>Home</Link>
       <Link to='/login'>Login</Link>
       <Link to='/signup'>Sign Up</Link>
