@@ -15,13 +15,15 @@ html {
   background-color: MediumSeaGreen;
   color: black;
 }
-input {
+input,
+textarea {
   background-color: snow;
   border-radius: 10px;
   padding: 0 10px 0 10px;
 }
 
-.nav {
+.nav,
+.nav-authenticated {
   position: fixed;
   top: 0;
   left: 0;
@@ -30,7 +32,7 @@ input {
   overflow: hidden;
   width: 100%;
 }
-.nav a {
+.nav *:not(.logo) {
   float: left;
   color: Snow;
   text-align: center;
@@ -41,6 +43,11 @@ input {
 .nav a:hover {
   background-color: MediumSeaGreen;
   color: Black;
+}
+.logo {
+  float: left;
+  height: 50px;
+  padding-left: 10px;
 }
 /* if we want to show the active page
 .nav a.active {
@@ -71,4 +78,107 @@ input {
 
 .section1 {
   text-align: center;
+}
+
+.nav-authenticated {
+  top: 0;
+}
+
+.nav-authenticated div,
+.nav-authenticated button {
+  text-align: center;
+  padding: 14px 16px;
+  font-size: 17px;
+}
+
+.nav-authenticated div {
+  float: left;
+}
+
+.nav-authenticated button {
+  float: right;
+}
+
+.delete-button {
+  color: crimson;
+}
+
+.delete-button:hover {
+  font-weight: bold;
+}
+
+.logout-button:hover {
+  color: snow;
+}
+.nav-authenticated button:hover {
+  background-color: mediumseagreen;
+}
+
+.main {
+  margin-top: 10px;
+  padding: 0 20px;
+}
+
+.main *:not(.nav, .nav-authenticated) {
+  position: relative;
+}
+.main:first-child {
+  margin-top: 60px;
+}
+
+.CreatePost {
+  margin: inherit 80px 0;
+  padding-bottom: 5px;
+  text-align: center;
+  border-bottom: 2px solid silver;
+}
+
+.CreatePost input,
+.CreatePost textarea {
+  background-color: mediumseagreen;
+  border: 2px solid seagreen;
+  color: snow;
+}
+
+.CreatePost input:hover,
+.CreatePost textarea:hover {
+  background-color: seagreen;
+}
+
+.CreatePost div strong {
+  font-size: 30px;
+  text-align: center;
+}
+
+.PostFilter input {
+  background-color: mediumseagreen;
+  border: 2px solid seagreen;
+  color: snow;
+}
+
+.PostFilter input:hover {
+  background-color: seagreen;
+}
+
+.PostSorting select {
+  border-radius: 10px;
+}
+
+.PostSorting select:hover {
+  background-color: seagreen;
+  color: snow;
+}
+
+.PostList article {
+  border-radius: 2px;
+  padding: 10px 20px;
+}
+
+.PostList article:first-of-type {
+  margin-top: 20px;
+}
+
+.PostList article:nth-of-type(odd) {
+  background-color: seagreen;
+  color: snow;
 }

@@ -19,21 +19,16 @@ export function Blog() {
   const posts = postsQuery.data ?? []
 
   return (
-    <div style={{ padding: 8 }}>
+    <div className='main'>
       <Header />
-      <hr />
-      <hr />
-      <br />
       <CreatePost />
       <br />
-      <hr />
-      Filter By:
+      <strong>Filter By:</strong>
       <PostFilter
         field='author'
         value={author}
         onChange={(value) => setAuthor(value)}
       />
-      <br />
       <PostSorting
         fields={['createdAt', 'updatedAt']}
         value={sortBy}
@@ -41,7 +36,6 @@ export function Blog() {
         orderValue={sortOrder}
         onOrderChange={(orderValue) => setSortOrder(orderValue)}
       />
-      <hr />
       <PostList posts={posts} />
     </div>
   )

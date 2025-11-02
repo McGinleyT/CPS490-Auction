@@ -8,8 +8,10 @@ export function PostSorting({
   onOrderChange,
 }) {
   return (
-    <div>
-      <label htmlFor='sortBy'>Sort By: </label>
+    <div className='PostSorting'>
+      <label htmlFor='sortBy' style={{ fontWeight: 'bold' }}>
+        Sort By:{' '}
+      </label>
       <select
         name='sortBy'
         id='sortBy'
@@ -23,7 +25,9 @@ export function PostSorting({
         ))}
       </select>
       {' / '}
-      <label htmlFor='sortOrder'>Sort Order: </label>
+      <label htmlFor='sortOrder' style={{ fontWeight: 'bold' }}>
+        Sort Order:{' '}
+      </label>
       <select
         name='sortOrder'
         id='sortOrder'
