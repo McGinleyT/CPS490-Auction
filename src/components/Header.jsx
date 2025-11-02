@@ -27,7 +27,7 @@ export function Header() {
       <div>
         Logged in as <User id={sub} />
         <br />
-        <button onClick={() => setToken(null)}>Logout</button>
+        <button onClick={() => setToken(null)}>Logut</button>
         <button
           onClick={handleDeleteAccount}
           style={{ marginLeft: 8, color: 'red' }}
@@ -39,14 +39,10 @@ export function Header() {
   }
 
   return (
-    <div className='bg-purple-600 text-white px-6 py-3 rounded-b-2xl'>
-      <Link className='font-bold underline' to='/login'>
-        Login
-      </Link>
-      <span className='mx-2 text-purple-200'>|</span>
-      <Link className='hover:text-yellow-200' to='/signup'>
-        Sign Up
-      </Link>
+    <div className='nav'>
+      <Link to='/'>Home</Link>
+      <Link to='/login'>Login</Link>
+      <Link to='/signup'>Sign Up</Link>
     </div>
   )
 }

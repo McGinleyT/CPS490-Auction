@@ -1,1 +1,74 @@
 @import 'tailwindcss';
+
+/*
+Colors:
+SeaGreen #2E8B57
+MediumSeaGreen #3CB371
+Black #000000
+Silver #C0C0C0
+Snow #FFFAFA
+Crimson #DC143C
+*/
+
+html {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: MediumSeaGreen;
+  color: black;
+}
+input {
+  background-color: snow;
+  border-radius: 10px;
+  padding: 0 10px 0 10px;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  /*z-index: 3;*/
+  background-color: SeaGreen;
+  overflow: hidden;
+  width: 100%;
+}
+.nav a {
+  float: left;
+  color: Snow;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.nav a:hover {
+  background-color: MediumSeaGreen;
+  color: Black;
+}
+/* if we want to show the active page
+.nav a.active {
+  background-color: #ce645e;
+  color: #fcecc8;
+}
+*/
+.button {
+  border: solid SeaGreen;
+  background-color: MediumSeaGreen;
+}
+.button:hover {
+  background-color: SeaGreen;
+  color: snow;
+}
+
+.header {
+  padding: 30;
+  text-align: center;
+  color: Black;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.section1 {
+  text-align: center;
+}
