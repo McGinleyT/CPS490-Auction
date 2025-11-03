@@ -19,22 +19,25 @@ export function CreatePost() {
     createPostMutation.mutate()
   }
 
-  if (!token) return <strong>Please log in to create new posts.</strong>
+  if (!token)
+    return (
+      <strong className='flex justify-center'>
+        Please log in to create new posts.
+      </strong>
+    )
 
   return (
     <form onSubmit={handleSubmit} className='CreatePost'>
-      <div>
-        <strong>Create a New Auction Posting</strong>
-        <br />
-        <label htmlFor='create-title'>Title: </label>
-        <input
-          type='text'
-          name='create-title'
-          id='create-title'
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-      </div>
+      <strong>Create a New Auction Post</strong>
+      <br />
+      <label htmlFor='create-title'>Title: </label>
+      <input
+        type='text'
+        name='create-title'
+        id='create-title'
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
       <br />
       <label htmlFor='contents'>Description: </label>
       <textarea
