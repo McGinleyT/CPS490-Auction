@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { User } from '../db/models/user.js'
+import { Post } from '../db/models/post.js'
 
 export async function loginUser({ username, password }) {
   const user = await User.findOne({ username })
@@ -32,6 +33,7 @@ export async function getUserInfoById(userId) {
   }
 }
 export async function deleteUserById(userId) {
+  await Post.deleteMany({ author: userId })
   const deleted = await User.findByIdAndDelete(userId)
   return deleted
 }
