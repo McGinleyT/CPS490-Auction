@@ -21,7 +21,9 @@ export function Blog() {
   return (
     <div className='main'>
       <Header />
+      <br />
       <CreatePost />
+      <br />
       <br />
       <strong>Filter By:</strong>
       <PostFilter
@@ -29,6 +31,7 @@ export function Blog() {
         value={author}
         onChange={(value) => setAuthor(value)}
       />
+      <br />
       <PostSorting
         fields={['createdAt', 'updatedAt']}
         value={sortBy}

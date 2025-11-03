@@ -28,12 +28,10 @@ export function Login() {
   return (
     <form onSubmit={handleSubmit} style={{ padding: 8 }}>
       <Header />
-      <hr style={{ padding: 16 }} />
-      <hr />
-      <br />
+      <hr style={{ padding: 32 }} />
       <p className='title'>Login</p>
       <br />
-      <div className='section1'>
+      <div className='align-center'>
         <div>
           <label htmlFor='create-username'> Username: </label>
           <input
@@ -63,6 +61,7 @@ export function Login() {
           disabled={!username || !password || loginMutation.isPending}
         />
       </div>
+      <div className='unmowed'></div>
     </form>
   )
 }

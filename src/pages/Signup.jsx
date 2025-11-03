@@ -23,12 +23,10 @@ export function Signup() {
   return (
     <form onSubmit={handleSubmit} style={{ padding: 8 }}>
       <Header />
-      <hr style={{ padding: 16 }} />
-      <hr />
-      <br />
+      <hr style={{ padding: 32 }} />
       <p className='title'>Sign Up</p>
       <br />
-      <div className='section1'>
+      <div className='align-center'>
         <div>
           <label htmlFor='create-username'> Username: </label>
           <input

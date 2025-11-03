@@ -28,17 +28,11 @@ export function Header() {
   if (token) {
     const { sub } = jwtDecode(token)
     return (
-      <div className='nav-authenticated'>
+      <div className='nav'>
         <img src={logo} alt='logo' className='logo' />
-        <div
-          style={{
-            fontFamily: 'Copperplate',
-            fontWeight: 'bold',
-            color: 'silver',
-          }}
-        >
+        <Link className='logo-text' to='/'>
           Lawn Pawn
-        </div>
+        </Link>
         <div>
           Logged in as:&nbsp;
           <User id={sub} />
@@ -57,16 +51,9 @@ export function Header() {
   return (
     <div className='nav'>
       <img src={logo} alt='logo' className='logo' />
-      <div
-        style={{
-          fontFamily: 'Copperplate',
-          fontWeight: 'bold',
-          color: 'silver',
-        }}
-      >
+      <Link className='logo-text' to='/'>
         Lawn Pawn
-      </div>
-      <Link to='/'>Home</Link>
+      </Link>
       <Link to='/login'>Login</Link>
       <Link to='/signup'>Sign Up</Link>
     </div>
