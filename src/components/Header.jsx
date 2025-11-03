@@ -28,12 +28,12 @@ export function Header() {
   if (token) {
     const { sub } = jwtDecode(token)
     return (
-      <div className='nav'>
+      <div className='nav-authenticated'>
         <img src={logo} alt='logo' className='logo' />
         <Link className='logo-text' to='/'>
           Lawn Pawn
         </Link>
-        <div>
+        <div className='username'>
           Logged in as:&nbsp;
           <User id={sub} />
         </div>
