@@ -30,7 +30,7 @@ export function Header() {
         <div
           style={{
             fontFamily: 'Copperplate',
-            'font-weight': 'bold',
+            fontWeight: 'bold',
             color: 'silver',
           }}
         >
@@ -57,7 +57,7 @@ export function Header() {
       <div
         style={{
           fontFamily: 'Copperplate',
-          'font-weight': 'bold',
+          fontWeight: 'bold',
           color: 'silver',
         }}
       >
