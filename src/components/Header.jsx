@@ -4,9 +4,11 @@ import { useAuth } from '../contexts/AuthContext.jsx'
 import { User } from './User.jsx'
 import { deleteMe } from '../api/users.js'
 import logo from '../assets/redmower.png'
+import { useQueryClient } from '@tanstack/react-query'
 
 export function Header() {
   const [token, setToken] = useAuth()
+  const queryClient = useQueryClient()
 
   async function handleDeleteAccount() {
     const yes = window.confirm(
@@ -16,6 +18,7 @@ export function Header() {
 
     try {
       await deleteMe(token)
+      queryClient.invalidateQueries({ queryKey: ['posts'] })
       setToken(null)
     } catch (err) {
       alert(err.message ?? 'Failed to delete account')
