@@ -8,7 +8,7 @@ export function PostSorting({
   onOrderChange,
 }) {
   return (
-    <div>
+    <div className='PostSorting'>
       <label htmlFor='sortBy' style={{ fontWeight: 'bold' }}>
         Sort By:{' '}
       </label>

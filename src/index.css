@@ -10,10 +10,85 @@ Snow #FFFAFA
 Crimson #DC143C
 */
 
+/* Keyframes */
+@keyframes shake {
+  0% {
+    transform: translateY(0);
+  } /* Start at original position */
+  25% {
+    transform: translateY(-1px);
+  } /* Move slightly down */
+  50% {
+    transform: translateY(1px);
+  } /* Move slightly up */
+  75% {
+    transform: translateY(-1px);
+  } /* Move slightly down again */
+  100% {
+    transform: translateY(0);
+  } /* Return to original position */
+}
+
+@keyframes mow {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(100vw - 200px));
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes iridescence {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+/* animation: iridescence 1s infinite;
+animation-timing-function: linear; */
+
+@keyframes warning {
+  0% {
+    background-color: none;
+  }
+  50% {
+    background-color: crimson;
+    color: snow;
+  }
+  100% {
+    background-color: none;
+  }
+}
+
 html {
-  font-family: 'Courier New', Courier, monospace;
-  background-color: mediumseagreen;
-  color: black;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+
+  background: repeating-linear-gradient(
+    45deg,
+    seagreen 0px,
+    seagreen 20px,
+    mediumseagreen 5px,
+    mediumseagreen 40px
+  );
+  /* background-image: url('./src/assets/grass4.png'); */
+
+  background-size: contain;
+  background-repeat: repeat;
 }
 
 textarea {
@@ -43,6 +118,7 @@ textarea:focus {
 
 select {
   border: 2px solid seagreen;
+  background-color: mediumseagreen;
   border-radius: 10px;
 }
 select:hover {
@@ -60,8 +136,9 @@ select:focus {
   background-color: MediumSeaGreen;
   color: black;
 }
+
 .button:hover {
-  background-color: rgb(25, 99, 57);
+  background-color: seagreen;
   color: snow;
 }
 
@@ -85,7 +162,10 @@ select:focus {
   overflow: hidden;
   width: 100%;
   z-index: 1;
+  background-image: linear-gradient(10deg, seagreen 50%, mediumseagreen 50%);
+  background-size: 50px auto;
 }
+
 .nav *:not(.logo, .logo-text) {
   float: right;
   color: Snow;
@@ -101,10 +181,11 @@ select:focus {
 
 /* nav authenticated */
 .nav-authenticated div,
-.nav-authenticated button,
-.logo-text {
+.nav-authenticated button {
   text-align: center;
-  padding: 14px 16px;
+  align-self: center;
+  padding: 10px 16px;
+  margin: 4px 0;
   font-size: 17px;
 }
 .username {
@@ -117,7 +198,15 @@ select:focus {
 
 .nav-authenticated button:hover,
 .logo-text:hover {
-  background-color: mediumseagreen;
+  /* background-color: mediumseagreen; */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.nav button,
+.nav-authenticated button,
+.logo-text {
+  border-radius: 10px;
 }
 
 /* Logo */
@@ -126,20 +215,37 @@ select:focus {
   height: 50px;
   padding-left: 10px;
   padding-right: 10px;
+  animation: shake 0.2s infinite alternate;
+  transform: translate3d(0, 0, 0); /* Force hardware acceleration */
+  backface-visibility: hidden; /* Prevent slight shakes at animation end */
+  perspective: 1000px;
 }
+
+.logo:hover {
+  animation: mow 4s alternate;
+}
+
 .logo-text {
   float: left;
   font-family: 'Copperplate';
   font-weight: bold;
-  color: silver;
+  font-size: x-large;
+  color: snow;
+  padding: 9px 16px;
 }
+
+/* #text .logo-text:hover {
+  color: crimson;
+  animation: iridescence 1s infinite;
+  animation-timing-function: linear;
+} */
 
 /* Delete Button */
 .delete-button {
   color: crimson;
 }
 .delete-button:hover {
-  font-weight: bold;
+  animation: warning 1s infinite;
 }
 
 /* Logout */
@@ -163,7 +269,11 @@ select:focus {
   margin: inherit 80px 0;
   padding-bottom: 5px;
   text-align: center;
-  border-bottom: 2px solid silver;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 0px;
+  border-radius: 100px;
+  box-shadow: 0px 0px 10px seagreen;
 }
 
 .CreatePost * {
@@ -176,20 +286,72 @@ select:focus {
   text-align: center;
 }
 
+/* PostFilter */
+.PostFilter {
+  padding: 10px;
+  border-radius: 10px;
+  /* background-color: rgba(255, 255, 255, 0.4); */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0px 0px 10px seagreen;
+  width: fit-content;
+}
+
+/* PostSorting */
+.PostSorting {
+  padding: 10px;
+  border-radius: 10px;
+  /* background-color: rgba(255, 255, 255, 0.4); */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0px 0px 10px seagreen;
+  width: fit-content;
+}
+
 /* PostList */
-.PostList article {
-  border-radius: 2px;
-  padding: 10px 20px;
+.PostList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
-.PostList article:first-of-type {
-  margin-top: 20px;
+
+.Post {
+  width: 30%;
+  border: 0px solid seagreen;
+  border-radius: 10px;
+  margin: 15px;
+  box-shadow: 0px 10px 10px seagreen;
+  /* background-color: rgba(255, 255, 255, 0.4); */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
-.PostList article:nth-of-type(odd) {
-  background-color: seagreen;
-  color: snow;
+
+.Post:hover {
+  scale: 1.03;
+  animation: float 2s infinite;
+  animation-timing-function: ease-in-out;
 }
-.PostList article:nth-of-type(even) {
-  /* Leave this in, in case we change the background */
-  background-color: mediumseagreen;
-  color: black;
+
+.Post *:not(img) {
+  width: 100%;
+  padding: 10px;
+  margin: 0;
+}
+
+/* THIS WILL NEED ADJUSTED WHEN PICTURES ARE ADDED */
+.Post img {
+  background-color: snow;
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+  aspect-ratio: 16/9;
+}
+
+.Post h3 {
+  font-weight: bolder;
+  font-size: x-large;
+}
+
+.Post div:last-of-type {
+  border-radius: 0 0 8px 8px;
+  font-style: italic;
 }
