@@ -4,13 +4,14 @@ import { createPost } from '../api/posts.js'
 import { useAuth } from '../contexts/AuthContext.jsx'
 
 export function CreatePost() {
+  const today = new Date()
+  const tomorrow = new Date()
+  tomorrow.setDate(tomorrow.getDate() + 1)
+  const tomorrowMillis = tomorrow.getTime()
   const [token] = useAuth()
   const [title, setTitle] = useState('')
   const [contents, setContents] = useState('')
-  const [endDate, setDate] = useState('')
-  const tomorrow = new Date()
-  tomorrow.setDate(tomorrow.getDate() + 1)
-  const tomorrowSlice = tomorrow.toJSON().slice(0, 10)
+  const [endDate, setEndDate] = useState(tomorrowMillis)
   const queryClient = useQueryClient()
   const createPostMutation = useMutation({
     mutationFn: () => createPost(token, { title, contents, endDate }),
@@ -19,6 +20,7 @@ export function CreatePost() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    console.log(tomorrow.toJSON().slice(0, 23))
     console.log('Submitting:', { title, contents, endDate })
     createPostMutation.mutate()
   }
@@ -50,12 +52,14 @@ export function CreatePost() {
         onChange={(e) => setContents(e.target.value)}
       />
       <br />
-      <label htmlFor='endDate'>End date of auction:</label>
+      <label htmlFor='endDate'>Auction end date and time:</label>
       <input
-        name='endDate'
-        type='date'
-        min={tomorrowSlice}
-        onChange={(e) => setDate(e.target.value.toLocaleDateString())}
+        id='endDate'
+        type='datetime-local'
+        step={0}
+        min={today.toJSON().slice(0, 16)}
+        defaultValue={tomorrow.toJSON().slice(0, 16)}
+        onChange={(e) => setEndDate(e.target.valueAsNumber)}
       />
       <br />
       <input
