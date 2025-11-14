@@ -7,15 +7,19 @@ export function CreatePost() {
   const [token] = useAuth()
   const [title, setTitle] = useState('')
   const [contents, setContents] = useState('')
+  const [endDate, setDate] = useState('')
+  const tomorrow = new Date()
+  tomorrow.setDate(tomorrow.getDate() + 1)
+  const tomorrowSlice = tomorrow.toJSON().slice(0, 10)
   const queryClient = useQueryClient()
   const createPostMutation = useMutation({
-    mutationFn: () => createPost(token, { title, contents }),
+    mutationFn: () => createPost(token, { title, contents, endDate }),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['posts'] }),
   })
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('Submitting:', { title, contents })
+    console.log('Submitting:', { title, contents, endDate })
     createPostMutation.mutate()
   }
 
@@ -46,6 +50,13 @@ export function CreatePost() {
         onChange={(e) => setContents(e.target.value)}
       />
       <br />
+      <label htmlFor='endDate'>End date of auction:</label>
+      <input
+        name='endDate'
+        type='date'
+        min={tomorrowSlice}
+        onChange={(e) => setDate(e.target.value.toLocaleDateString())}
+      />
       <br />
       <input
         type='submit'
