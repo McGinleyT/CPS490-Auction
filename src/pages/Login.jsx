@@ -61,7 +61,6 @@ export function Login() {
           disabled={!username || !password || loginMutation.isPending}
         />
       </div>
-      <div className='unmowed'></div>
     </form>
   )
 }

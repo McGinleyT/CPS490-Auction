@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Signup } from './pages/Signup.jsx'
 import { AuthContextProvider } from './contexts/AuthContext.jsx'
 import { Login } from './pages/Login.jsx'
+import { Item } from './pages/Item.jsx'
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login />,
+  },
+  {
+    path: '/Item/:postId',
+    element: <Item />,
   },
 ])
 

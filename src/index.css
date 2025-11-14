@@ -98,21 +98,21 @@ textarea {
 
 input,
 textarea {
-  background-color: mediumseagreen;
-  border: 2px solid seagreen;
+  background-color: MediumSeaGreen;
+  border: 2px solid SeaGreen;
   color: black;
   border-radius: 10px;
   padding: 0 10px 0 10px;
 }
 input:hover,
 textarea:hover {
-  background-color: seagreen;
+  background-color: SeaGreen;
   color: snow;
 }
 input:focus,
 textarea:focus {
   outline: none;
-  background-color: seagreen;
+  background-color: SeaGreen;
   color: snow;
 }
 
@@ -122,12 +122,12 @@ select {
   border-radius: 10px;
 }
 select:hover {
-  background-color: seagreen;
+  background-color: SeaGreen;
   color: snow;
 }
 select:focus {
   outline: none;
-  background-color: seagreen;
+  background-color: SeaGreen;
   color: snow;
 }
 
