@@ -2,16 +2,10 @@ import PropTypes from 'prop-types'
 import { User } from './User.jsx'
 import { Link } from 'react-router-dom'
 
-export function Post({ _id, title, contents, author, ...rest }) {
-  const postForDetail = { _id, title, contents, author, ...rest }
-
+export function Post({ _id, title, contents, author }) {
   return (
     <article className='Post'>
-      <Link
-        to={`/posts/${_id}`}
-        state={{ post: postForDetail }}
-        className='PostLink'
-      >
+      <Link to={`/posts/${_id}`} className='PostLink'>
         <img alt='postimage' src='./src/assets/redmower.png' />
         <h3>{title}</h3>
         <div>{contents}</div>

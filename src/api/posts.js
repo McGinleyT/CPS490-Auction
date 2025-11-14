@@ -30,3 +30,21 @@ export const createPost = async (token, post) => {
     console.error('error creating posts:', err)
   }
 }
+
+export const getPostById = async (id) => {
+  try {
+    const url = new URL(`posts/${id}`, import.meta.env.VITE_BACKEND_URL)
+    const res = await fetch(url.toString())
+
+    if (!res.ok) {
+      throw new Error(
+        `Failed to fetch post with id ${id} (status ${res.status})`,
+      )
+    }
+
+    return await res.json()
+  } catch (err) {
+    console.error('error fetching single post:', err)
+    throw err
+  }
+}

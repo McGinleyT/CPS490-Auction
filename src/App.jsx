@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Signup } from './pages/Signup.jsx'
 import { AuthContextProvider } from './contexts/AuthContext.jsx'
 import { Login } from './pages/Login.jsx'
-import { Item } from './pages/Item.jsx'
+import { PostDetail } from './pages/PostDetail.jsx'
 
 const router = createBrowserRouter([
   {
@@ -20,8 +20,8 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: '/Item/:postId',
-    element: <Item />,
+    path: '/posts/:postId',
+    element: <PostDetail />,
   },
 ])
 
