@@ -48,3 +48,23 @@ export const getPostById = async (id) => {
     throw err
   }
 }
+
+export const placeBid = async (postId, amount, token) => {
+  try {
+    const url = new URL(
+      `posts/${postId}/bids`,
+      import.meta.env.VITE_BACKEND_URL,
+    )
+    const res = await fetch(url.toString(), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ amount }),
+    })
+    return await res.json()
+  } catch (err) {
+    console.error('error placing a bid:', err)
+  }
+}
