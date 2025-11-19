@@ -6,7 +6,7 @@ import {
   createPost,
   updatePost,
   deletePost,
-  //placeBid,
+  placeBid,
 } from '../services/posts.js'
 import { requireAuth } from '../middleware/jwt.js'
 
@@ -78,18 +78,21 @@ export function postsRoutes(app) {
     }
   })
 
-  // app.post('/api/v1/posts/:id/bids', requireAuth, async (req, res) => {
-  //   try {
-  //     const postId = req.params.postId
-  //     const amount = req.body.amount
-  //     const userId = req.auth.sub
-  //     if (!amount || !amount{type: Number}) {
-  //       return res.status(400)
-  //     }
-  //     const bid = await placeBid(userId, postId, amount)
-  //   } catch (err) {
-  //     console.error('error bidding on post', err)
-  //     return res.status(500).end()
-  //   }
-  // })
+  app.post('/api/v1/posts/:id/bids', requireAuth, async (req, res) => {
+    try {
+      const postId = req.params.id
+      const amount = Number(req.body.amount)
+      const userId = req.auth.sub
+
+      if (!Number.isFinite(amount)) {
+        return res.status(400).json({ error: 'amount must be a number' })
+      }
+
+      const post = await placeBid(userId, postId, amount)
+      return res.json(post)
+    } catch (err) {
+      console.error('error bidding on post', err)
+      return res.status(500).end()
+    }
+  })
 }
