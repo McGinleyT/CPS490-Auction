@@ -47,3 +47,25 @@ export async function updatePost(
 export async function deletePost(userId, postId) {
   return await Post.deleteOne({ _id: postId, author: userId })
 }
+
+export async function placeBid(userId, postId, amount) {
+  const post = await Post.findById(postId)
+  if (!post) {
+    throw new Error('post not found')
+  }
+  if (amount <= post.currBidAmt) {
+    throw new Error('bid must be higher than current bid')
+  }
+  const user = await User.findById(userId)
+  if (!user) {
+    throw new Error('user not found')
+  }
+  if (user.tokens < amount) {
+    throw new Error('not enough tokens')
+  }
+  post.currBidAmt = amount
+  post.currBidder = user._id
+  post.bidHistory.push({ user: user._id, amount })
+  await post.save()
+  return post
+}

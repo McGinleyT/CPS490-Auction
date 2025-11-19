@@ -7,6 +7,18 @@ const postSchema = new Schema(
     contents: String,
     tags: [String],
     endDate: Number,
+    currBidAmt: { type: Number, default: 0, min: 0 },
+    currBidder: { type: Schema.Types.ObjectId, ref: 'user', default: null },
+    bidHistory: {
+      type: [
+        {
+          user: { type: Schema.Types.ObjectId, ref: 'user', required: true },
+          amount: { type: Number, required: true, min: 0 },
+          createdAt: { type: Date, default: Date.now },
+        },
+      ],
+      default: [],
+    },
   },
   { timestamps: true },
 )

@@ -6,6 +6,7 @@ import {
   createPost,
   updatePost,
   deletePost,
+  //placeBid,
 } from '../services/posts.js'
 import { requireAuth } from '../middleware/jwt.js'
 
@@ -76,4 +77,19 @@ export function postsRoutes(app) {
       return res.status(500).end()
     }
   })
+
+  // app.post('/api/v1/posts/:id/bids', requireAuth, async (req, res) => {
+  //   try {
+  //     const postId = req.params.postId
+  //     const amount = req.body.amount
+  //     const userId = req.auth.sub
+  //     if (!amount || !amount{type: Number}) {
+  //       return res.status(400)
+  //     }
+  //     const bid = await placeBid(userId, postId, amount)
+  //   } catch (err) {
+  //     console.error('error bidding on post', err)
+  //     return res.status(500).end()
+  //   }
+  // })
 }
