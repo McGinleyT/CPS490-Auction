@@ -4,7 +4,15 @@ import { userRoutes } from './routes/users.js'
 import bodyParser from 'body-parser'
 
 const app = express()
-app.use(bodyParser.json())
+app.use(bodyParser.json({ limit: '50mb', extended: true }))
+app.use(
+  bodyParser.urlencoded({
+    limit: '50mb',
+    extended: true,
+    parameterLimit: 50000,
+  }),
+)
+app.use(bodyParser.text({ limit: '200mb' }))
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:5173')

@@ -147,6 +147,7 @@ export function PostDetail() {
     endDate,
     currBidAmt,
     bidHistory = [],
+    image,
   } = post
 
   const handlePlaceBid = async () => {
@@ -188,11 +189,7 @@ export function PostDetail() {
         {/* LEFT: Item info */}
         <div className='auction-main'>
           <div className='auction-image-wrapper'>
-            <img
-              className='auction-image'
-              alt='postimage'
-              src='/src/assets/redmower.png'
-            />
+            <img className='auction-image' alt='postimage' src={image} />
           </div>
 
           <h1 className='auction-title'>{title}</h1>

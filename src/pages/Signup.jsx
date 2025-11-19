@@ -23,7 +23,8 @@ export function Signup() {
   return (
     <form onSubmit={handleSubmit} style={{ padding: 8 }}>
       <Header />
-      <hr style={{ padding: 32 }} />
+      <br />
+      <br />
       <p className='title'>Sign Up</p>
       <br />
       <div className='align-center'>

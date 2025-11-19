@@ -1,9 +1,19 @@
 import { Post } from '../db/models/post.js'
 import { User } from '../db/models/user.js'
 
-export async function createPost(userId, { title, contents, tags, endDate }) {
+export async function createPost(
+  userId,
+  { title, contents, tags, endDate, image },
+) {
   console.log('inside services createPost')
-  const post = new Post({ title, author: userId, contents, tags, endDate })
+  const post = new Post({
+    title,
+    author: userId,
+    contents,
+    tags,
+    endDate,
+    image,
+  })
   return await post.save()
 }
 
@@ -35,11 +45,11 @@ export async function getPostById(postID) {
 export async function updatePost(
   userId,
   postID,
-  { title, contents, tags, endDate },
+  { title, contents, tags, endDate, image },
 ) {
   return await Post.findOneAndUpdate(
     { _id: postID, author: userId },
-    { $set: { title, contents, tags, endDate } },
+    { $set: { title, contents, tags, endDate, image } },
     { new: true },
   )
 }
