@@ -5,19 +5,20 @@ import { Link } from 'react-router-dom'
 export function Post({ _id, title, contents, author, endDate, image }) {
   const endDateString = new Date(endDate).toLocaleString()
   return (
-    <article className='Post'>
+    <article className='post'>
       <Link to={`/posts/${_id}`} className='PostLink'>
         <img alt='postimage' src={image} />
-        <h3>{title}</h3>
-        <div>{contents}</div>
-        <br />
-        <div>Ending: {endDateString}</div>
-        {author && (
-          <div>
-            <br />
-            Written by <User id={author} />
-          </div>
-        )}
+        <p>
+          <h>{title}</h>
+          <div>{contents}</div>
+          <div>Ending: {endDateString}</div>
+          {author && (
+            <div>
+              Written by:
+              <User id={author} />
+            </div>
+          )}
+        </p>
       </Link>
     </article>
   )

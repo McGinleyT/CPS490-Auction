@@ -21,13 +21,11 @@ export function Signup() {
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ padding: 8 }}>
+    <form onSubmit={handleSubmit}>
       <Header />
-      <br />
-      <br />
-      <p className='title'>Sign Up</p>
-      <br />
-      <div className='align-center'>
+      <div className='containerFit'>
+        <strong>Sign Up</strong>
+        <br />
         <div>
           <label htmlFor='create-username'> Username: </label>
           <input
@@ -50,12 +48,18 @@ export function Signup() {
           />
         </div>
         <br />
-        <input
-          className='button'
-          type='submit'
-          value={signupMutation.isPending ? 'Signing up...' : 'Sign up'}
-          disabled={!username || !password || signupMutation.isPending}
-        />
+        <div>
+          <input
+            className='button'
+            type='submit'
+            value={signupMutation.isPending ? 'Signing up...' : 'Sign up'}
+            disabled={!username || !password || signupMutation.isPending}
+          />
+        </div>
+        <br />
+        <p>
+          Already have an account? <a href='/login'>Log in</a>
+        </p>
       </div>
     </form>
   )
