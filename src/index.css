@@ -1,26 +1,16 @@
 @import 'tailwindcss';
 
-/*
-Colors:
-SeaGreen #2E8B57
-MediumSeaGreen #3CB371
-Black #000000
-Silver #C0C0C0
-Snow #FFFAFA
-Crimson #DC143C
-*/
-
+/* : */
 :root {
-  --glass: rgba(255, 255, 255, 0.5);
-  --background: lightgray;
-  --shadow: var(--light);
-
-  --lightest: rgb(179, 219, 179);
+  --glass: rgba(255, 255, 255, 0.4);
+  --glass-dark: rgba(0, 0, 0, 0.5);
+  --shadow: var(--light) --lightest: rgb(179, 219, 179);
   --light: rgb(40, 137, 92);
   --medium: rgb(48, 140, 89);
   --darkest: seagreen;
 }
 
+/* @ */
 /* Keyframes */
 @keyframes shake {
   0% {
@@ -44,8 +34,14 @@ Crimson #DC143C
   0% {
     transform: translateX(0);
   }
+  90% {
+    transform: translateX(100vw);
+  }
+  90.1% {
+    transform: translateX(-10vw);
+  }
   100% {
-    transform: translateX(calc(100vw - 200px));
+    transform: translateX(0);
   }
 }
 
@@ -61,217 +57,182 @@ Crimson #DC143C
   }
 }
 
-@keyframes iridescence {
+@keyframes fadeIn {
   from {
-    filter: hue-rotate(0deg);
+    color: white;
+    background-color: transparent;
+    backdrop-filter: none;
+    box-shadow: none;
   }
   to {
-    filter: hue-rotate(360deg);
+    color: black;
+    background-color: var(--glass);
+    backdrop-filter: blur(1px);
+    box-shadow: none;
   }
 }
-/* animation: iridescence 1s infinite;
-animation-timing-function: linear; */
+@keyframes fadeInvert {
+  from {
+    color: black;
+    background-color: var(--glass);
+  }
+  to {
+    color: snow;
+    background: var(--glass-dark);
+  }
+}
+
+@keyframes fadeInDelete {
+  from {
+    color: crimson;
+    background-color: transparent;
+    backdrop-filter: none;
+    /* box-shadow: none; */
+  }
+  to {
+    color: snow;
+    background-color: crimson;
+    backdrop-filter: blur(1px);
+    /* box-shadow:
+      0 4px 15px rgba(0, 0, 0, 0.25),
+      inset 0 1px 2px var(--glass); */
+  }
+}
 
 @keyframes warning {
   0% {
-    background-color: none;
-  }
-  50% {
     background-color: crimson;
     color: snow;
   }
+  50% {
+    background-color: pink;
+    color: snow;
+  }
   100% {
-    background-color: none;
+    background-color: crimson;
+    color: snow;
   }
 }
 
+/* Webkit */
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--glass);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  border-radius: 15px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25); /* lighter glass */
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.25);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* universal */
 html {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
     'Lucida Sans', Arial, sans-serif;
-
-  /* background: repeating-linear-gradient(
-    45deg,
-    red 0px,
-    silver 40px,
-    snow 60px,
-    snow 80px
-  ); */
-  background-color: var(--background);
+  padding: 0 5%;
+  margin-top: 80px;
   min-height: 110vh;
-  /* background-image: url('../src/assets/grass.png'); */
   background-size: cover;
-  background-repeat: no-repeat;
   background-color: var(--darkest);
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 2535 2535' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"),
-    radial-gradient(circle at 99% 5%, var(--darkest) 0%, transparent 30%),
-    radial-gradient(circle at 1% 3%, var(--darkest) 0%, transparent 29%),
-    radial-gradient(circle at 51% 103%, var(--lightest) 0%, transparent 47%),
-    radial-gradient(
-      circle at 66% 63%,
-      var(--light) 16.09752791533027%,
-      transparent 32.13033319788704%
-    ),
-    radial-gradient(
-      circle at 51% 52%,
-      var(--light) 16.09752791533027%,
-      transparent 32.863114852109575%
-    ),
-    radial-gradient(
-      circle at 31% 61%,
-      var(--light) 16.09752791533027%,
-      transparent 32.863114852109575%
-    ),
-    radial-gradient(
-      circle at 100% 99%,
-      var(--light) 16.09752791533027%,
-      transparent 44.47265921287166%
-    ),
-    radial-gradient(
-      circle at 2% 101%,
-      var(--light) 16.09752791533027%,
-      transparent 44.47265921287166%
-    ),
-    radial-gradient(
-      circle at 79% 42%,
-      var(--medium) 5.753662340850602%,
-      transparent 37.98184067282947%
-    ),
-    radial-gradient(
-      circle at 49% 18%,
-      var(--medium) 12.036428704456181%,
-      transparent 35.05874930160504%
-    ),
-    radial-gradient(
-      circle at 23% 44%,
-      var(--medium) 8.912275243803332%,
-      transparent 33%
-    );
-  background-blend-mode: overlay, normal, normal, normal, normal, normal, normal,
-    normal, normal, normal, normal, normal;
-  animation: iridescence 1s 1;
-  animation-timing-function: linear;
-}
-
-textarea {
-  width: 30%;
-  height: 8em;
+  /* animation: fade 5s ease forwards; */
 }
 
 input,
-textarea {
+textarea,
+select {
   background-color: var(--glass);
-  backdrop-filter: blur(10px);
-  box-shadow: 0px 2px 2px var(--shadow);
-  border: 0px solid SeaGreen;
+  backdrop-filter: blur(1px);
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.25),
+    inset 0 1px 2px var(--glass);
   color: black;
   border-radius: 10px;
-  padding: 0 10px 0 10px;
+  padding: 0 5px 0 5px;
 }
 input:hover,
-textarea:hover {
-  background-color: SeaGreen;
-  color: snow;
-}
-input:focus,
-textarea:focus {
-  outline: none;
-  background-color: SeaGreen;
-  color: snow;
-}
-
-select {
-  border: 0px solid seagreen;
-  background-color: var(--glass);
-  backdrop-filter: blur(10px);
-  box-shadow: 0px 2px 2px var(--shadow);
-  border-radius: 10px;
-}
+textarea:hover,
 select:hover {
-  background-color: SeaGreen;
-  color: snow;
-}
-select:focus {
-  outline: none;
-  background-color: SeaGreen;
-  color: snow;
-}
-
-.button {
-  border: 2px solid SeaGreen;
-  background-color: MediumSeaGreen;
+  background-color: snow;
   color: black;
 }
-
-.button:hover {
-  background-color: seagreen;
-  color: snow;
-}
-
-.title {
-  font-size: 32px;
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  background-color: snow;
+  color: black;
   font-weight: bold;
-  text-align: center;
 }
 
-.align-center {
-  text-align: center;
-}
-
+/* className */
 /* Nav */
-.nav,
-.nav-authenticated {
+.nav {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: var();
   overflow: hidden;
   width: 100%;
   z-index: 1;
   background-image: linear-gradient(10deg, seagreen 50%, mediumseagreen 50%);
-  background-size: 50px auto;
+  background-size: 60px auto;
+  color: snow;
 }
-
-.nav *:not(.logo, .logo-text) {
-  float: right;
-  color: Snow;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
+.nav * {
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
 }
+.nav button:hover,
 .nav a:hover {
-  background-color: MediumSeaGreen;
-  color: Black;
+  background-color: var(--glass);
+  backdrop-filter: blur(1px);
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.25),
+    inset 0 1px 2px var(--glass);
+  animation: fadeIn 1s ease forwards;
 }
-
-/* nav authenticated */
-.nav-authenticated div,
-.nav-authenticated button {
-  text-align: center;
-  align-self: center;
-  padding: 10px 16px;
-  margin: 4px 0;
-  font-size: 17px;
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
 }
-.username {
+.nav-left {
   float: left;
 }
-
-.nav-authenticated button {
+.nav-right {
   float: right;
 }
-
-.nav-authenticated button:hover,
-.logo-text:hover {
-  /* background-color: mediumseagreen; */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.nav button,
-.nav-authenticated button,
-.logo-text {
+.nav-right * {
+  text-align: center;
+  align-self: right;
+  padding: 5px;
+  margin: 8px 15px;
+  font-size: 17px;
   border-radius: 10px;
+}
+.delete-button {
+  color: crimson;
+  font-weight: bold;
+}
+.delete-button:hover {
+  animation:
+    fadeInDelete 1s ease forwards,
+    warning 1.5s 1s ease infinite !important;
 }
 
 /* Logo */
@@ -283,11 +244,10 @@ select:focus {
   animation: shake 0.2s infinite alternate;
   transform: translate3d(0, 0, 0); /* Force hardware acceleration */
   backface-visibility: hidden; /* Prevent slight shakes at animation end */
-  perspective: 1000px;
+  /* perspective: 1000px; What does this do */
 }
-
 .logo:hover {
-  animation: mow 4s alternate;
+  animation: mow 4s linear forwards;
 }
 
 .logo-text {
@@ -295,135 +255,199 @@ select:focus {
   font-family: 'Copperplate';
   font-weight: bold;
   font-size: x-large;
+  border-radius: 10px;
   color: snow;
-  padding: 9px 16px;
+  padding: 1px 5px;
+  margin: 8px 11px;
 }
 
-/* #text .logo-text:hover {
-  color: crimson;
-  animation: iridescence 1s infinite;
-  animation-timing-function: linear;
-} */
+/* Container */
+.container,
+.containerFit,
+.containerPage,
+.post {
+  background: var(--glass);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
 
-/* Delete Button */
-.delete-button {
-  color: crimson;
-}
-.delete-button:hover {
-  animation: warning 1s infinite;
-}
+  border: 1px solid var(--glass);
+  border-radius: 15px;
 
-/* Logout */
-.logout-button:hover {
-  color: snow;
-}
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.25),
+    inset 0 1px 2px var(--glass);
 
-/* Main Page */
-.main {
-  padding: 0 5%;
+  padding: 1rem;
+  margin: 10px;
 }
-.main *:not(.nav, .nav-authenticated) {
-  position: relative;
-}
-.main:first-child {
-  margin-top: 60px;
-}
-
-/* CreatePost */
-.CreatePost {
-  margin: inherit 80px 0;
-  padding-bottom: 5px;
-  text-align: center;
-  background-color: var(--glass);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 0px;
-  border-radius: 100px;
-  box-shadow: 0px 5px 5px var(--shadow);
-}
-
-.CreatePost * {
+.container *,
+.containerFit * {
   display: flex;
   justify-self: center;
 }
-
-.CreatePost strong {
-  font-size: 30px;
+.container strong,
+.containerFit strong,
+.containerPage strong {
+  font-size: 32px;
   text-align: center;
+  font-weight: bold;
 }
-
-.CreatePost input:last-of-type:hover {
-  animation: iridescence 1s infinite;
-  animation-timing-function: linear;
+.container a,
+.containerFit a,
+.containerPage a {
+  color: var(--darkest);
+  text-decoration: underline;
+  padding-left: 5px;
 }
-
-/* PostFilter */
-.PostFilter {
-  padding: 10px;
-  border-radius: 10px;
-  background-color: var(--glass);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0px 5px 5px var(--shadow);
+.container a:hover,
+.containerFit a:hover,
+.containerPage a:hover {
+  color: var(--lightest);
+}
+.containerFit {
   width: fit-content;
+  justify-self: center;
 }
+.containerPage {
+  width: 100%;
+  max-width: 1100px;
+  gap: 2rem;
+}
+.containerPage .imageContainer {
+  width: 100%;
+  max-height: 320px;
+  aspect-ratio: 16 / 9;
+  border-radius: 15px;
+  overflow: hidden;
 
-/* PostSorting */
-.PostSorting {
-  padding: 10px;
-  border-radius: 10px;
+  /* Dark Glass */
+  background: var(--glass-dark);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  border: none;
+  border-radius: 15px;
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.4),
+    inset 0 -2px 4px var(--glass-dark);
+}
+.containerPage .image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.containerPage .title,
+.containerPage .info {
+  justify-self: center;
+}
+.containerPage .info strong {
+  font-weight: bold;
+  font-size: large;
+}
+.containerBid {
+  padding: 1.25rem;
+  gap: 0.75rem;
+  text-align: center;
+
+  background: var(--glass-dark);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  border: none;
+  border-radius: 15px;
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.4),
+    inset 0 -2px 4px var(--glass-dark);
+}
+.containerBid strong {
+  font-weight: bold;
+  font-size: larger;
+}
+.containerBid p {
+  font-size: large;
+}
+.containerBid h {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+.containerBid input,
+.containerBid button {
   background-color: var(--glass);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0px 5px 5px var(--shadow);
-  width: fit-content;
+  backdrop-filter: blur(1px);
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.25),
+    inset 0 1px 2px var(--glass);
+  color: black;
+  border-radius: 10px;
+  padding: 0px 5px 0px 5px;
+  margin: 10px;
+}
+.containerBid input:hover,
+.containerBid button:hover {
+  animation: fadeInvert 1s ease forwards;
+}
+.containerBid input::-webkit-inner-spin-button,
+.containerBid input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.containerBid .item {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0.25rem;
+  border-bottom: 1px solid var(--glass);
+}
+.containerBid .item:last-child {
+  border-bottom: none;
+}
+.containerBid .list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.containerBid .list-scroll {
+  max-height: 260px;
+  overflow-y: auto;
+  padding-right: 0.25rem;
 }
 
-/* PostList */
-.PostList {
+.containerList {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.Post {
+/* Post */
+.post {
   width: 30%;
-  border: 0px solid seagreen;
-  border-radius: 10px;
+  border-radius: 15px;
   margin: 15px;
-  box-shadow: 0px 5px 5px var(--shadow);
-  background-color: var(--glass);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  padding: 0;
 }
-
-.Post:hover {
+.post p {
+  margin: 10px;
+}
+.post:hover {
   scale: 1.03;
   animation: float 2s infinite;
   animation-timing-function: ease-in-out;
 }
-
-.Post .PostLink *:not(img) {
+.post .postLink *:not(img) {
   width: 100%;
   padding: 10px;
   margin: 0;
 }
-
-/* THIS WILL NEED ADJUSTED WHEN PICTURES ARE ADDED */
-.Post img {
+.post img {
   background-color: var(--glass);
   width: 100%;
-  border-radius: 8px 8px 0 0;
+  border-radius: 15px 15px 0 0;
   aspect-ratio: 16/9;
 }
-
-.Post h3 {
-  font-weight: bolder;
+.post h {
+  font-weight: bold;
   font-size: x-large;
 }
-
-.Post div:last-of-type {
-  border-radius: 0 0 8px 8px;
+.post div:last-of-type {
+  border-radius: 0 0 15px 15px;
   font-style: italic;
-  padding-bottom: 0;
+  padding-bottom: 0px;
 }

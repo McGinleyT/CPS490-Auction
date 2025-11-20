@@ -6,7 +6,6 @@ import { Header } from '../components/Header.jsx'
 import { User } from '../components/User.jsx'
 import { useAuth } from '../contexts/AuthContext.jsx'
 import { getPostById, placeBid } from '../api/posts.js'
-import './PostDetail.css'
 
 function formatDate(value) {
   if (!value) return ''
@@ -15,9 +14,9 @@ function formatDate(value) {
 
 function PageShell({ children }) {
   return (
-    <div className='main'>
+    <div>
       <Header />
-      <div className='auction-page'>{children}</div>
+      <div>{children}</div>
     </div>
   )
 }
@@ -31,42 +30,35 @@ function BidPanel({
   onPlaceBid,
 }) {
   return (
-    <section className='bid-panel'>
-      <h2>Current Bid</h2>
-      <p className='bid-current'>
-        {currBidAmt ?? 0} <span className='bid-unit'>tokens</span>
-      </p>
-
-      <h3>Place a Bid</h3>
-      <div className='bid-form'>
+    <section className='containerBid'>
+      <strong>Current Bid:</strong>
+      <p>{currBidAmt ?? 0} tokens</p>
+      <br />
+      <strong>Place a Bid:</strong>
+      <div>
         <input
           type='number'
           min='0'
           value={bidAmount}
           onChange={(e) => setBidAmount(e.target.value)}
           placeholder='Enter bid amount'
-          className='bid-input'
         />
-        <button
-          onClick={onPlaceBid}
-          disabled={isPlacingBid}
-          className='bid-button'
-        >
+        <button onClick={onPlaceBid} disabled={isPlacingBid}>
           {isPlacingBid ? 'Placing bid...' : 'Place Bid'}
         </button>
       </div>
 
-      {bidError && <p className='error bid-error'>{bidError}</p>}
+      {bidError && <p>{bidError}</p>}
     </section>
   )
 }
 
 function BidHistoryPanel({ bidHistory, isOpen, onToggle }) {
   return (
-    <section className='BidHistory'>
-      <div className='bid-history-header'>
-        <h2>Bid History</h2>
-        <button type='button' className='bid-history-toggle' onClick={onToggle}>
+    <section className='containerBid'>
+      <div>
+        <strong>Bid History</strong>
+        <button type='button' onClick={onToggle}>
           {isOpen ? 'Hide' : `Show (${bidHistory.length || 0})`}
         </button>
       </div>
@@ -74,23 +66,17 @@ function BidHistoryPanel({ bidHistory, isOpen, onToggle }) {
       {isOpen && (
         <>
           {bidHistory.length === 0 ? (
-            <p className='bid-empty'>No bids yet.</p>
+            <p>No bids yet.</p>
           ) : (
-            <div className='bid-history-scroll'>
-              <ul className='bid-history-list'>
+            <div className='list-scroll'>
+              <ul>
                 {bidHistory.map((bid, index) => (
-                  <li key={bid._id || index} className='bid-history-item'>
-                    <div className='bid-history-main'>
-                      <span className='bid-amount'>{bid.amount} tokens</span>
-                      <span className='bid-user'>
-                        <User id={bid.user} />
-                      </span>
+                  <li key={bid._id || index} className='item'>
+                    <div className='list'>
+                      <p>{bid.amount} tokens</p>
+                      <User id={bid.user} />
                     </div>
-                    {bid.createdAt && (
-                      <span className='bid-time'>
-                        {formatDate(bid.createdAt)}
-                      </span>
-                    )}
+                    {bid.createdAt && <h>{formatDate(bid.createdAt)}</h>}
                   </li>
                 ))}
               </ul>
@@ -185,43 +171,45 @@ export function PostDetail() {
 
   return (
     <PageShell>
-      <div className='auction-card'>
-        {/* LEFT: Item info */}
-        <div className='auction-main'>
-          <div className='auction-image-wrapper'>
-            <img className='auction-image' alt='postimage' src={image} />
+      <div className='containerPage'>
+        <div>
+          <div className='imageContainer'>
+            <img className='image' alt='postimage' src={image} />
           </div>
-
-          <h1 className='auction-title'>{title}</h1>
-
-          <div className='auction-meta'>
+          <div className='title'>
+            <strong>{title}</strong>
+          </div>
+          <div className='info'>
             {author && (
-              <p className='auction-seller'>
-                <span className='label'>Seller:</span> <User id={author} />
+              <p>
+                <strong>Seller: </strong>
+                <User id={author} />
               </p>
             )}
 
             {createdAt && (
-              <p className='auction-created'>
-                <span className='label'>Created:</span> {formatDate(createdAt)}
+              <p>
+                <strong>Created: </strong>
+                {formatDate(createdAt)}
               </p>
             )}
 
             {endDate && (
-              <p className='auction-end'>
-                <span className='label'>Ends:</span> {formatDate(endDate)}
+              <p>
+                <strong>Ends: </strong>
+                {formatDate(endDate)}
               </p>
             )}
+            <p>
+              <strong>Item Description: </strong>
+              <p>{contents}</p>
+            </p>
           </div>
-
-          <section className='auction-description'>
-            <h2>Item Description</h2>
-            <p>{contents}</p>
-          </section>
         </div>
 
-        {/* RIGHT: Bidding panel */}
-        <div className='auction-sidebar'>
+        <br />
+
+        <div>
           <BidPanel
             currBidAmt={currBidAmt}
             bidAmount={bidAmount}
@@ -230,7 +218,7 @@ export function PostDetail() {
             bidError={bidError}
             onPlaceBid={handlePlaceBid}
           />
-
+          <br />
           <BidHistoryPanel
             bidHistory={bidHistory}
             isOpen={isHistoryOpen}

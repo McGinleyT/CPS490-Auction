@@ -28,34 +28,45 @@ export function Header() {
   if (token) {
     const { sub } = jwtDecode(token)
     return (
-      <div className='nav-authenticated'>
-        <img src={logo} alt='logo' className='logo' />
-        <Link className='logo-text' to='/'>
-          Lawn Pawn
-        </Link>
-        <div className='username'>
-          Logged in as:&nbsp;
-          <User id={sub} />
+      <div className='nav'>
+        <div className='nav-left'>
+          <img src={logo} alt='logo' className='logo' />
+          <Link className='logo-text' to='/'>
+            Lawn Pawn
+          </Link>
+          <div className='username'>
+            Logged in as:&nbsp;
+            <User id={sub} />
+          </div>
         </div>
-
-        <button onClick={() => setToken(null)} className='logout-button'>
-          Logout
-        </button>
-        <button onClick={handleDeleteAccount} className='delete-button'>
-          Delete Account
-        </button>
+        <div className='nav-right'>
+          <button onClick={() => setToken(null)} className='logout-button'>
+            Logout
+          </button>
+          <button onClick={handleDeleteAccount} className='delete-button'>
+            Delete Account
+          </button>
+        </div>
       </div>
     )
   }
 
   return (
     <div className='nav'>
-      <img src={logo} alt='logo' className='logo' />
-      <Link className='logo-text' to='/'>
-        Lawn Pawn
-      </Link>
-      <Link to='/login'>Login</Link>
-      <Link to='/signup'>Sign Up</Link>
+      <div className='nav-left'>
+        <img src={logo} alt='logo' className='logo' />
+        <Link className='logo-text' to='/'>
+          Lawn Pawn
+        </Link>
+      </div>
+      <div className='nav-right'>
+        <Link className='link' to='/login'>
+          Login
+        </Link>
+        <Link className='link' to='/signup'>
+          Sign Up
+        </Link>
+      </div>
     </div>
   )
 }

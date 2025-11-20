@@ -26,13 +26,12 @@ export function Login() {
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ padding: 8 }}>
+    <form onSubmit={handleSubmit}>
       <Header />
-      <br />
-      <br />
-      <p className='title'>Login</p>
-      <br />
-      <div className='align-center'>
+      <div className='containerFit'>
+        <strong>Login</strong>
+        <br />
+
         <div>
           <label htmlFor='create-username'> Username: </label>
           <input
@@ -61,6 +60,10 @@ export function Login() {
           value={loginMutation.isPending ? 'Logging in...' : 'Login'}
           disabled={!username || !password || loginMutation.isPending}
         />
+        <br />
+        <p>
+          Don’t have an account? <a href='/signup'>Sign up</a>
+        </p>
       </div>
     </form>
   )

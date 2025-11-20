@@ -33,13 +33,14 @@ export function CreatePost() {
 
   if (!token)
     return (
-      <strong className='CreatePost flex justify-self-center justify-center w-md'>
-        Please log in to create new posts.
-      </strong>
+      <form onSubmit={handleSubmit} className='container'>
+        <strong>Please log in to create new posts.</strong>
+      </form>
+      // do we need on submit here
     )
 
   return (
-    <form onSubmit={handleSubmit} className='CreatePost'>
+    <form onSubmit={handleSubmit} className='container'>
       <strong>Create a New Auction Post</strong>
       <br />
       <label htmlFor='image-upload'>Add an image:</label>
