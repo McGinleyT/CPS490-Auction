@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import PropTypes from 'prop-types'
@@ -6,6 +6,8 @@ import { Header } from '../components/Header.jsx'
 import { User } from '../components/User.jsx'
 import { useAuth } from '../contexts/AuthContext.jsx'
 import { getPostById, placeBid } from '../api/posts.js'
+import { getMe } from '../api/users.js'
+import { useSocket } from '../contexts/SocketIOContext.jsx'
 
 function formatDate(value) {
   if (!value) return ''
@@ -92,6 +94,13 @@ export function PostDetail() {
   const { postId } = useParams()
   const queryClient = useQueryClient()
   const [token] = useAuth()
+  const { socket } = useSocket()
+
+  const { data: me } = useQuery({
+    queryKey: ['me'],
+    queryFn: () => getMe(token),
+    enabled: !!token,
+  })
 
   const [bidAmount, setBidAmount] = useState('')
   const [bidError, setBidError] = useState(null)
@@ -107,6 +116,37 @@ export function PostDetail() {
     queryKey: ['post', postId],
     queryFn: () => getPostById(postId),
   })
+
+  useEffect(() => {
+    if (!socket || !postId) return
+
+    socket.emit('bid.join', { postId })
+
+    const handleBidUpdated = (payload) => {
+      if (payload.postId !== postId) return
+
+      // Update the React Query cache for this post
+      queryClient.setQueryData(['post', postId], (old) => {
+        if (!old) return old
+        return {
+          ...old,
+          currBidAmt:
+            payload.currBidAmt !== undefined
+              ? payload.currBidAmt
+              : old.currBidAmt,
+          currBidder: payload.currBidder ?? old.currBidder,
+          bidHistory: payload.bidHistory ?? old.bidHistory,
+        }
+      })
+    }
+
+    socket.on('bid.updated', handleBidUpdated)
+
+    return () => {
+      socket.emit('bid.leave', { postId })
+      socket.off('bid.updated', handleBidUpdated)
+    }
+  }, [socket, postId, queryClient])
 
   if (isLoading) {
     return (
@@ -210,6 +250,12 @@ export function PostDetail() {
         <br />
 
         <div>
+          {me && (
+            <p style={{ marginBottom: '0.5rem' }}>
+              <strong>Your tokens:</strong> {me.tokens}
+            </p>
+          )}
+
           <BidPanel
             currBidAmt={currBidAmt}
             bidAmount={bidAmount}

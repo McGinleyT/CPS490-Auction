@@ -9,6 +9,7 @@ import {
   placeBid,
 } from '../services/posts.js'
 import { requireAuth } from '../middleware/jwt.js'
+import { emitBidUpdate } from '../socket.js'
 
 export function postsRoutes(app) {
   app.get('/api/v1/posts', async (req, res) => {
@@ -89,6 +90,16 @@ export function postsRoutes(app) {
       }
 
       const post = await placeBid(userId, postId, amount)
+      if (!post) {
+        return res.status(404).end()
+      }
+
+      emitBidUpdate(postId, {
+        currBidAmt: post.currBidAmt,
+        currBidder: post.currBidder,
+        bidHistory: post.bidHistory,
+      })
+
       return res.json(post)
     } catch (err) {
       console.error('error bidding on post', err)

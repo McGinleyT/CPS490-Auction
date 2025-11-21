@@ -39,3 +39,16 @@ export const deleteMe = async (token) => {
   }
   return await res.json()
 }
+
+export const getMe = async (token) => {
+  const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}user/me`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  if (!res.ok) {
+    throw new Error('failed to fetch current user')
+  }
+  return await res.json()
+}
