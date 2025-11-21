@@ -25,13 +25,19 @@ export async function createUser({ username, password }) {
 
 export async function getUserInfoById(userId) {
   try {
-    const user = await User.findById(userId)
-    if (!user) return { username: userId }
-    return { username: user.username }
+    const user = await User.findById(userId).select('username tokens')
+    if (!user) {
+      return { username: userId, tokens: 0 }
+    }
+    return {
+      username: user.username,
+      tokens: user.tokens,
+    }
   } catch (err) {
-    return { username: userId }
+    return { username: userId, tokens: 0 }
   }
 }
+
 export async function deleteUserById(userId) {
   await Post.deleteMany({ author: userId })
   const deleted = await User.findByIdAndDelete(userId)

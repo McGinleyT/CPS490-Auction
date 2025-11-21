@@ -48,4 +48,20 @@ export function userRoutes(app) {
 
     return res.status(200).json({ message: 'account deleted' })
   })
+
+  app.get('/api/v1/user/me', requireAuth, async (req, res) => {
+    try {
+      const userId = req.auth?.sub
+      if (!userId) {
+        return res.status(401).json({ error: 'not authorized' })
+      }
+
+      const userInfo = await getUserInfoById(userId)
+      // userInfo has { username, tokens }
+      return res.status(200).json(userInfo)
+    } catch (err) {
+      console.error('error getting current user', err)
+      return res.status(500).json({ error: 'internal server error' })
+    }
+  })
 }

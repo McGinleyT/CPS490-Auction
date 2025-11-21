@@ -5,6 +5,7 @@ import { Signup } from './pages/Signup.jsx'
 import { AuthContextProvider } from './contexts/AuthContext.jsx'
 import { Login } from './pages/Login.jsx'
 import { PostDetail } from './pages/PostDetail.jsx'
+import { SocketProvider } from './contexts/SocketIOContext.jsx'
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,9 @@ export function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthContextProvider>
-        <RouterProvider router={router} />
+        <SocketProvider>
+          <RouterProvider router={router} />
+        </SocketProvider>
       </AuthContextProvider>
     </QueryClientProvider>
   )
