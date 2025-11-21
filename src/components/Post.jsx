@@ -14,7 +14,7 @@ export function Post({ _id, title, contents, author, endDate, image }) {
           <div>Ending: {endDateString}</div>
           {author && (
             <div>
-              Written by:
+              Seller:&nbsp;
               <User id={author} />
             </div>
           )}
