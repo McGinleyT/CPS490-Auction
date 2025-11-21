@@ -29,6 +29,12 @@ export function CreatePost() {
     console.log(image)
     console.log('Submitting:', { title, contents, endDate, image })
     createPostMutation.mutate()
+    console.log('Submitted:', { title, contents, endDate, image })
+    //reset form if mutation worked?
+    // setTitle('')
+    // setContents('')
+    // setEndDate(tomorrowMillis)
+    // setImage(defaultImage)
   }
 
   if (!token)

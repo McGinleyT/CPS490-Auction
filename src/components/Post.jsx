@@ -4,6 +4,27 @@ import { Link } from 'react-router-dom'
 
 export function Post({ _id, title, contents, author, endDate, image }) {
   const endDateString = new Date(endDate).toLocaleString()
+  if (endDate <= new Date()) {
+    return (
+      <article className='post postExpired'>
+        <img alt='postimage' src={image} />
+        <p>
+          <h style={{ color: 'crimson' }}>This auction is over!</h>
+          <br />
+          <h>{title}</h>
+          <div>{contents}</div>
+          <div>Ending: {endDateString}</div>
+          {author && (
+            <div>
+              Written by:
+              <User id={author} />
+            </div>
+          )}
+        </p>
+      </article>
+    )
+  }
+
   return (
     <article className='post'>
       <Link to={`/posts/${_id}`} className='PostLink'>
