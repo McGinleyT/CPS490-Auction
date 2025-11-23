@@ -368,7 +368,7 @@ select:focus {
 .containerBid p {
   font-size: large;
 }
-.containerBid h {
+.containerBid h1 {
   font-size: 0.8rem;
   opacity: 0.7;
 }
@@ -427,7 +427,7 @@ select:focus {
   padding: 0;
   overflow-wrap: break-word;
 }
-.post p {
+.post .body {
   margin: 10px;
 }
 .post:hover {
@@ -446,11 +446,11 @@ select:focus {
   border-radius: 15px 15px 0 0;
   aspect-ratio: 16/9;
 }
-.post h {
+.post .body h1 {
   font-weight: bold;
   font-size: x-large;
 }
-.post div:first-of-type {
+.post .body div:first-of-type {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   line-clamp: 4;
@@ -458,7 +458,7 @@ select:focus {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.post div:last-of-type {
+.post .body div:last-of-type {
   border-radius: 0 0 15px 15px;
   font-style: italic;
   padding-bottom: 0px;

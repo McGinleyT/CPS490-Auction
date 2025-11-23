@@ -5,9 +5,10 @@ import { useAuth } from '../contexts/AuthContext.jsx'
 
 export function CreatePost() {
   const today = new Date()
-  const tomorrow = new Date()
-  tomorrow.setDate(tomorrow.getDate() + 1)
+  const tomorrow = new Date(today)
+  tomorrow.setDate(today.getDate() + 1)
   const tomorrowMillis = tomorrow.getTime()
+  const timezoneOffset = new Date().getTimezoneOffset() * 60000
   const [token] = useAuth()
   const [title, setTitle] = useState('')
   const [contents, setContents] = useState('')
@@ -26,15 +27,15 @@ export function CreatePost() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(image)
+    console.log('endDate', endDate)
     console.log('Submitting:', { title, contents, endDate, image })
     createPostMutation.mutate()
-    console.log('Submitted:', { title, contents, endDate, image })
     //reset form if mutation worked?
     // setTitle('')
     // setContents('')
     // setEndDate(tomorrowMillis)
     // setImage(defaultImage)
+    // document.getElementsByClassName('container').reset
   }
 
   if (!token)
@@ -87,9 +88,11 @@ export function CreatePost() {
         id='endDate'
         type='datetime-local'
         step={0}
-        min={today.toJSON().slice(0, 16)}
-        defaultValue={tomorrow.toJSON().slice(0, 16)}
-        onChange={(e) => setEndDate(e.target.valueAsNumber)}
+        min={new Date(today.getTime() - timezoneOffset).toJSON().slice(0, 16)}
+        defaultValue={new Date(tomorrow.getTime() - timezoneOffset)
+          .toJSON()
+          .slice(0, 16)}
+        onChange={(e) => setEndDate(e.target.valueAsNumber + timezoneOffset)}
       />
       <br />
       <input
