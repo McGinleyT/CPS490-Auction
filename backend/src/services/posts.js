@@ -63,19 +63,54 @@ export async function placeBid(userId, postId, amount) {
   if (!post) {
     throw new Error('post not found')
   }
+
   if (amount <= post.currBidAmt) {
     throw new Error('bid must be higher than current bid')
   }
+
   const user = await User.findById(userId)
   if (!user) {
     throw new Error('user not found')
   }
-  if (user.tokens < amount) {
+
+  const isCurrentBidder =
+    post.currBidder && post.currBidder.toString() === user._id.toString()
+
+  // How many tokens does this user effectively have available for this bid?
+  // If they are already the highest bidder, their previous bid is "locked"
+  // in this post, so we treat that amount as available for raising.
+  let effectiveTokens = user.tokens
+  if (isCurrentBidder) {
+    effectiveTokens += post.currBidAmt
+  }
+
+  if (amount > effectiveTokens) {
     throw new Error('not enough tokens')
   }
+
+  // Refund previous highest bidder if it was someone else
+  if (post.currBidder && post.currBidAmt > 0 && !isCurrentBidder) {
+    const prevBidder = await User.findById(post.currBidder)
+    if (prevBidder) {
+      prevBidder.tokens += post.currBidAmt
+      await prevBidder.save()
+    }
+  }
+
+  // Now charge the new highest bidder
+  if (isCurrentBidder) {
+    // They already had post.currBidAmt locked here, so the net cost is (amount - oldBid)
+    user.tokens = effectiveTokens - amount // (tokens + oldBid) - newBid
+  } else {
+    user.tokens -= amount
+  }
+  await user.save()
+
+  // Update the post
   post.currBidAmt = amount
   post.currBidder = user._id
   post.bidHistory.push({ user: user._id, amount })
   await post.save()
-  return post
+
+  return { post, user }
 }

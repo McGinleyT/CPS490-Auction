@@ -138,6 +138,10 @@ export function PostDetail() {
           bidHistory: payload.bidHistory ?? old.bidHistory,
         }
       })
+
+      if (token) {
+        queryClient.invalidateQueries(['me'])
+      }
     }
 
     socket.on('bid.updated', handleBidUpdated)
@@ -146,7 +150,7 @@ export function PostDetail() {
       socket.emit('bid.leave', { postId })
       socket.off('bid.updated', handleBidUpdated)
     }
-  }, [socket, postId, queryClient])
+  }, [socket, postId, queryClient, token])
 
   if (isLoading) {
     return (
@@ -193,14 +197,14 @@ export function PostDetail() {
     try {
       setIsPlacingBid(true)
 
-      const updatedPost = await placeBid(postId, numericAmount, token)
-
-      if (!updatedPost) {
-        setBidError('Failed to place bid.')
-        return
-      }
+      // backend returns { post, user }
+      await placeBid(postId, numericAmount, token)
 
       await queryClient.invalidateQueries(['post', postId])
+
+      // Refresh current user (token balance)
+      await queryClient.invalidateQueries(['me'])
+
       setBidAmount('')
     } catch (err) {
       setBidError(err.message || 'An error occurred while placing the bid.')

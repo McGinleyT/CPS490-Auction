@@ -89,8 +89,11 @@ export function postsRoutes(app) {
         return res.status(400).json({ error: 'amount must be a number' })
       }
 
-      const post = await placeBid(userId, postId, amount)
+      const { post, user } = await placeBid(userId, postId, amount)
       if (!post) {
+        return res.status(404).end()
+      }
+      if (!user) {
         return res.status(404).end()
       }
 
@@ -100,9 +103,30 @@ export function postsRoutes(app) {
         bidHistory: post.bidHistory,
       })
 
-      return res.json(post)
+      return res.json({
+        post,
+        user: {
+          _id: user._id,
+          username: user.username,
+          tokens: user.tokens,
+        },
+      })
     } catch (err) {
       console.error('error bidding on post', err)
+      if (
+        err.message === 'post not found' ||
+        err.message === 'user not found'
+      ) {
+        return res.status(404).json({ error: err.message })
+      }
+
+      if (
+        err.message === 'bid must be higher than current bid' ||
+        err.message === 'not enough tokens'
+      ) {
+        return res.status(400).json({ error: err.message })
+      }
+
       return res.status(500).end()
     }
   })
