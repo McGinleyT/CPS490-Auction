@@ -63,8 +63,16 @@ export const placeBid = async (postId, amount, token) => {
       },
       body: JSON.stringify({ amount }),
     })
-    return await res.json()
+
+    const data = await res.json().catch(() => ({}))
+
+    if (!res.ok) {
+      throw new Error(data.error || 'failed to place bid')
+    }
+
+    return data
   } catch (err) {
     console.error('error placing a bid:', err)
+    throw err
   }
 }
