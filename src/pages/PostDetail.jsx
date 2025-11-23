@@ -14,6 +14,18 @@ function formatDate(value) {
   return new Date(value).toLocaleString()
 }
 
+function formatCountdown(value = 0) {
+  var seconds = parseInt((value / 1000) % 60),
+    minutes = parseInt((value / (1000 * 60)) % 60),
+    hours = parseInt((value / (1000 * 60 * 60)) % 24)
+
+  hours = hours < 10 ? '0' + hours : hours
+  minutes = minutes < 10 ? '0' + minutes : minutes
+  seconds = seconds < 10 ? '0' + seconds : seconds
+
+  return hours + ':' + minutes + ':' + seconds
+}
+
 function PageShell({ children }) {
   return (
     <div>
@@ -106,6 +118,7 @@ export function PostDetail() {
   const [bidError, setBidError] = useState(null)
   const [isPlacingBid, setIsPlacingBid] = useState(false)
   const [isHistoryOpen, setIsHistoryOpen] = useState(true)
+  const [countdownClock, setCountdown] = useState('') //MONITOR THIS
 
   const {
     data: post,
@@ -180,6 +193,10 @@ export function PostDetail() {
     image,
   } = post
 
+  setInterval(() => {
+    setCountdown(endDate - Date.now())
+  }, 1000)
+
   const handlePlaceBid = async () => {
     setBidError(null)
 
@@ -241,13 +258,16 @@ export function PostDetail() {
             {endDate && (
               <p>
                 <strong>Ends: </strong>
-                {formatDate(endDate)}
+                {formatCountdown(
+                  endDate - Date.now() > 0 ? countdownClock : '00:00:00',
+                )}{' '}
+                ({formatDate(endDate)})
               </p>
             )}
-            <p>
+            <div>
               <strong>Item Description: </strong>
               <p>{contents}</p>
-            </p>
+            </div>
           </div>
         </div>
 

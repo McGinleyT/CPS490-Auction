@@ -8,10 +8,8 @@ export function Post({ _id, title, contents, author, endDate, image }) {
     return (
       <article className='post postExpired'>
         <img alt='postimage' src={image} />
-        <p>
-          <h style={{ color: 'crimson' }}>This auction is over!</h>
-          <br />
-          <h>{title}</h>
+        <div className='body'>
+          <h1>{title}</h1>
           <div>{contents}</div>
           <div>Ending: {endDateString}</div>
           {author && (
@@ -20,7 +18,17 @@ export function Post({ _id, title, contents, author, endDate, image }) {
               <User id={author} />
             </div>
           )}
-        </p>
+          <br />
+          <h2
+            style={{
+              color: 'crimson',
+              textAlign: 'center',
+              fontWeight: 'bold',
+            }}
+          >
+            This auction is over!
+          </h2>
+        </div>
       </article>
     )
   }
@@ -29,8 +37,8 @@ export function Post({ _id, title, contents, author, endDate, image }) {
     <article className='post'>
       <Link to={`/posts/${_id}`} className='PostLink'>
         <img alt='postimage' src={image} />
-        <p>
-          <h>{title}</h>
+        <div className='body'>
+          <h1>{title}</h1>
           <div>{contents}</div>
           <div>Ending: {endDateString}</div>
           {author && (
@@ -39,7 +47,7 @@ export function Post({ _id, title, contents, author, endDate, image }) {
               <User id={author} />
             </div>
           )}
-        </p>
+        </div>
       </Link>
     </article>
   )
