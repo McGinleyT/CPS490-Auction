@@ -18,12 +18,12 @@ function formatCountdown(value = 0) {
   var seconds = parseInt((value / 1000) % 60),
     minutes = parseInt((value / (1000 * 60)) % 60),
     hours = parseInt((value / (1000 * 60 * 60)) % 24)
-
+    days = parseInt((value / (1000 * 60 * 60 * 24)))
   hours = hours < 10 ? '0' + hours : hours
   minutes = minutes < 10 ? '0' + minutes : minutes
   seconds = seconds < 10 ? '0' + seconds : seconds
-
-  return hours + ':' + minutes + ':' + seconds
+  
+  return days + " Days, " + hours + ':' + minutes + ':' + seconds
 }
 
 function PageShell({ children }) {
