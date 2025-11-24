@@ -25,17 +25,15 @@ export function CreatePost() {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['posts'] }),
   })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     console.log('endDate', endDate)
     console.log('Submitting:', { title, contents, endDate, image })
-    createPostMutation.mutate()
-    //reset form if mutation worked?
-    // setTitle('')
-    // setContents('')
-    // setEndDate(tomorrowMillis)
-    // setImage(defaultImage)
-    // document.getElementsByClassName('container').reset
+    await createPostMutation.mutateAsync()
+    setTitle('')
+    setContents('')
+    setEndDate(tomorrowMillis)
+    setImage(defaultImage)
   }
 
   if (!token)
@@ -72,6 +70,7 @@ export function CreatePost() {
         type='text'
         name='create-title'
         id='create-title'
+        defaultValue={''}
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
@@ -80,6 +79,7 @@ export function CreatePost() {
       <textarea
         name='contents'
         value={contents}
+        defaultValue={''}
         onChange={(e) => setContents(e.target.value)}
       />
       <br />
