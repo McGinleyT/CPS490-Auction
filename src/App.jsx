@@ -6,6 +6,7 @@ import { AuthContextProvider } from './contexts/AuthContext.jsx'
 import { Login } from './pages/Login.jsx'
 import { PostDetail } from './pages/PostDetail.jsx'
 import { SocketProvider } from './contexts/SocketIOContext.jsx'
+import { Mow } from './pages/Mow.jsx'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: '/posts/:postId',
     element: <PostDetail />,
+  },
+  {
+    path: '/mow',
+    element: <Mow />,
   },
 ])
 

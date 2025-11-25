@@ -40,6 +40,9 @@ export function Header() {
           </div>
         </div>
         <div className='nav-right'>
+          <Link className='link' to='/mow'>
+            Mow
+          </Link>
           <button onClick={() => setToken(null)} className='logout-button'>
             Logout
           </button>

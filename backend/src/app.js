@@ -19,8 +19,17 @@ app.use(bodyParser.text({ limit: '200mb' }))
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:5173')
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+  // Allow PATCH for partial updates and include common headers
+  res.header(
+    'Access-Control-Allow-Methods',
+    'GET, POST, PUT, PATCH, DELETE, OPTIONS',
+  )
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Content-Type, Authorization, X-Requested-With, Accept',
+  )
+  // Allow credentials if frontend sends cookies/auth (optional)
+  res.header('Access-Control-Allow-Credentials', 'true')
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end()

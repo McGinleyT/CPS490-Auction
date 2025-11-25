@@ -5,6 +5,7 @@ import {
   deleteUserById,
 } from '../services/users.js'
 import { requireAuth } from '../middleware/jwt.js'
+import { User } from '../db/models/user.js'
 
 export function userRoutes(app) {
   app.post('/api/v1/user/signup', async (req, res) => {
@@ -63,5 +64,12 @@ export function userRoutes(app) {
       console.error('error getting current user', err)
       return res.status(500).json({ error: 'internal server error' })
     }
+  })
+
+  app.patch('/api/v1/user/me/tokens', requireAuth, async (req, res) => {
+    const userId = req.auth?.sub
+    const { tokens } = req.body
+    const user = await User.findByIdAndUpdate(userId, { tokens }, { new: true })
+    res.json({ tokens: user.tokens })
   })
 }
