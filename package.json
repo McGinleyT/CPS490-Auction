@@ -2,6 +2,7 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "start": "node backend/src/index.js"
+    "start": "node backend/src/index.js",
+    "heroku-postbuild": "cd backend && npm install"
   }
 }
