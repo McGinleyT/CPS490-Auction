@@ -1,9 +1,14 @@
 {
-  "name": "root",
+  "name": "lawn-pawn",
   "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
   "scripts": {
     "start": "node backend/src/index.js",
-    "heroku-postbuild": "cd frontend && npm install --production=false && npm run build && cd ../backend && npm install"
+    "build": "npm run build -w frontend",
+    "heroku-postbuild": "cd frontend && npm install --production=false && npm run build -w frontend && cd ../backend && npm install"
   },
   "engines": {
     "node": "22.x",
