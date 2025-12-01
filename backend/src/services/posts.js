@@ -21,7 +21,19 @@ async function listPosts(
   query = {},
   { sortBy = 'createdAt', sortOrder = 'descending' } = {},
 ) {
-  return await Post.find(query).sort({ [sortBy]: sortOrder })
+  // normalize sortOrder to 1 (asc) or -1 (desc) to avoid passing unexpected strings to mongoose
+  const order =
+    sortOrder === 'descending' || sortOrder === 'desc' || sortOrder === -1
+      ? -1
+      : 1
+
+  const posts = await Post.find(query).sort({ [sortBy]: order })
+  try {
+    console.info('[posts] listPosts', { query, sortBy, sortOrder, count: posts.length })
+  } catch (e) {
+    // ignore logging errors
+  }
+  return posts
 }
 
 export async function listAllPosts(options) {
