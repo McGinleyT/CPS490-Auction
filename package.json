@@ -3,6 +3,6 @@
   "private": true,
   "scripts": {
     "start": "node backend/src/index.js",
-    "heroku-postbuild": "cd backend && npm install"
+    "heroku-postbuild": "cd frontend && npm install && npm run build && cd ../backend && npm install"
   }
 }

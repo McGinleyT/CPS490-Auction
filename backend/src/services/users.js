@@ -1,4 +1,3 @@
-// use bcryptjs (already listed in backend/package.json) to avoid native bcrypt build issues
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { User } from '../db/models/user.js'

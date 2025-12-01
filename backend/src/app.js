@@ -11,6 +11,16 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const app = express()
+
+// Simple request logger to help diagnose 404/Not Found requests during development
+app.use((req, res, next) => {
+  try {
+    console.info(`[backend] ${req.method} ${req.originalUrl}`)
+  } catch (e) {
+    // ignore logging errors
+  }
+  next()
+})
 app.use(bodyParser.json({ limit: '50mb', extended: true }))
 app.use(
   bodyParser.urlencoded({
