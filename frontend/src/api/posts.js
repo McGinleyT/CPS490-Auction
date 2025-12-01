@@ -1,16 +1,36 @@
 export const getPosts = async (queryParams) => {
+  // validate backend base URL early to avoid silent failures
+  const base = import.meta.env.VITE_BACKEND_URL
+  if (!base) {
+    const err = new Error('VITE_BACKEND_URL is not set')
+    console.error('[posts] getPosts error:', err)
+    throw err
+  }
+
   try {
-    console.log('Backend URL:', import.meta.env.VITE_BACKEND_URL)
-    const url = new URL('posts', import.meta.env.VITE_BACKEND_URL)
+    console.log('[posts] Backend URL:', base)
+    const url = new URL('posts', base)
 
-    Object.entries(queryParams).forEach(([k, v]) => {
-      if (v !== undefined && v !== null && v !== '') url.searchParams.set(k, v)
-    })
+    if (queryParams) {
+      Object.entries(queryParams).forEach(([k, v]) => {
+        if (v !== undefined && v !== null && v !== '') url.searchParams.set(k, v)
+      })
+    }
 
+    console.info('[posts] GET', url.toString())
     const res = await fetch(url.toString())
+    if (!res.ok) {
+      const text = await res.text().catch(() => '')
+      const err = new Error(`failed to fetch posts (status ${res.status}): ${text}`)
+      console.error('[posts] getPosts non-ok response:', err)
+      throw err
+    }
+
     return await res.json()
   } catch (err) {
-    console.error('error fetching posts:', err)
+    console.error('[posts] error fetching posts:', err)
+    // rethrow so react-query receives the error and you can see it in DevTools
+    throw err
   }
 }
 
@@ -25,6 +45,13 @@ export const createPost = async (token, post) => {
       },
       body: JSON.stringify(post),
     })
+    if (!res.ok) {
+      const text = await res.text().catch(() => '')
+      const err = new Error(`createPost failed (status ${res.status}): ${text}`)
+      console.error('[posts] createPost non-ok response:', err)
+      throw err
+    }
+
     return await res.json()
   } catch (err) {
     console.error('error creating posts:', err)
