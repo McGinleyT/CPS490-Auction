@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "start": "node backend/src/index.js",
-    "heroku-postbuild": "cd frontend && npm install && npm run build && cd ../backend && npm install"
+    "heroku-postbuild": "cd frontend && npm install --production=false && npm run build && cd ../backend && npm install"
   },
   "engines": {
     "node": "22.x",
