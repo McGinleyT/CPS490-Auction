@@ -5,8 +5,22 @@ import bodyParser from 'body-parser'
 import { createServer } from 'node:http'
 import { Server } from 'socket.io'
 import { handleSocket } from './socket.js'
+import path from 'path'
+import { fileURLToPath } from 'url'
 
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 const app = express()
+
+// Simple request logger to help diagnose 404/Not Found requests during development
+app.use((req, res, next) => {
+  try {
+    console.info(`[backend] ${req.method} ${req.originalUrl}`)
+  } catch (e) {
+    // ignore logging errors
+  }
+  next()
+})
 app.use(bodyParser.json({ limit: '50mb', extended: true }))
 app.use(
   bodyParser.urlencoded({
@@ -41,8 +55,11 @@ app.use((req, res, next) => {
 postsRoutes(app)
 userRoutes(app)
 
-app.get('/', (req, res) => {
-  res.send('Hello from Express!')
+const clientDist = path.resolve(__dirname, '../..', 'frontend', 'dist')
+app.use(express.static(clientDist))
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(clientDist, 'index.html'))
 })
 
 const server = createServer(app)
