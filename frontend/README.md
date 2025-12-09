@@ -82,10 +82,10 @@ Exceptions:
 
 ---
 ### Activity Diagram:
-![Login Activity Diagram](imgs/authLoginDiagram.drawio.png)
+![Login Activity Diagram](../docs/imgs/authLoginDiagram.drawio.png)
 ---
 ### Communication Diagram:
-![Login Communication Diagram](<imgs/User account authentication_login Communication Diagram.drawio.png>)
+![Login Communication Diagram](<../docs/imgs/User account authentication_login Communication Diagram.drawio.png>)
 
 ## Use case 2: Users can add an auction item
 Description: This use case describes the process by which a user adds a new item to the auction page.
@@ -134,11 +134,11 @@ Exceptions:
 ---
 ### Activity Diagram:
 
-![New Auction Activity Diagram](imgs/NewAuctionActivityDiagram.png)
+![New Auction Activity Diagram](../docs/imgs/NewAuctionActivityDiagram.png)
 ---
 ### Communication Diagram:
 
-![New Auction Communication Diagram](imgs/NewAuctionCommunication.png)
+![New Auction Communication Diagram](../docs/imgs/NewAuctionCommunication.png)
 
 ## Use case 3: User can see all active auctions
 Description: This use case describes the process by which a user is able to view all active auctions.
@@ -167,10 +167,10 @@ Exceptions:
 - System Unavailable: If the system is offline, a "System Unavailable" message is displayed.
 ---
 ### Activity Diagram:
-![Active Auctions Activity Diagram](<imgs/Active Auctions Activity Diagram.png>)
+![Active Auctions Activity Diagram](<../docs/imgs/Active Auctions Activity Diagram.png>)
 ---
 ### Communication Diagram:
-![Active Auctions Communication Diagram](imgs/UseCase3CommDiagram.drawio.png)
+![Active Auctions Communication Diagram](../docs/imgs/UseCase3CommDiagram.drawio.png)
 
 ## Use case 4: User can click on active auctions
 Description: This use case describes the process by which a user clicks on an auction to access that specific auction’s information.
@@ -208,10 +208,10 @@ Exceptions:
 - System Unavailable: If the system is offline, a "System Unavailable" message is displayed.
 ---
 ### Activity Diagram:
-![Auction Button Activity Diagram](imgs/ClickAuctionActivityDiagram.drawio.png)
+![Auction Button Activity Diagram](../docs/imgs/ClickAuctionActivityDiagram.drawio.png)
 ---
 ### Communication Diagram:
-![Auction Button Communication Diagram](imgs/ClickAuctionCommunicationDiagram.drawio.png)
+![Auction Button Communication Diagram](../docs/imgs/ClickAuctionCommunicationDiagram.drawio.png)
 
 ## Use case 5: User sees auction page and its details
 Description: This use case describes the process by which a user clicks on a specific auction and views its details.
@@ -254,7 +254,7 @@ Exceptions:
 - System Unavailable: If the system is offline, a "System Unavailable" message is displayed.
 ---
 ### Communciation Diagram:
-![Auction Page Communication Diagram](imgs/AuctionPageComm.drawio.png)
+![Auction Page Communication Diagram](../docs/imgs/AuctionPageComm.drawio.png)
 ---
 ### Activity Diagram:
-![Auction Page Activity Diagram](imgs/AuctionPageActivity.drawio.png)
+![Auction Page Activity Diagram](../docs/imgs/AuctionPageActivity.drawio.png)
